@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassesDb\Pontuacao.cs" />
+    <Compile Include="Models\Pontuacao.cs" />
     <Compile Include="Enums\Dificuldade.cs" />
-    <Compile Include="ClassesDb\Jogador.cs" />
-    <Compile Include="ClassesDb\Palavra.cs" />
+    <Compile Include="Models\Jogador.cs" />
+    <Compile Include="Models\Palavra.cs" />
     <Compile Include="Interfaces\IJogadorRepositorio.cs" />
     <Compile Include="Interfaces\IPalavraRepositorio.cs" />
     <Compile Include="Interfaces\IPontuacaoRepositorio.cs" />
