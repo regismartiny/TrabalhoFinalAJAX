@@ -10,5 +10,7 @@ namespace JogoDaForca.Dominio.Interfaces
     public interface IJogadorRepositorio
     {
        Jogador BuscarPorNome(string nome);
+
+        Jogador SalvarJogador(Jogador jogador);
     }
 }

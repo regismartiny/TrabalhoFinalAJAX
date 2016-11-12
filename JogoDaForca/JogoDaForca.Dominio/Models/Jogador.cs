@@ -12,11 +12,14 @@ namespace JogoDaForca.Dominio.ClassesDb
 
         public string Nome { get; set; }
 
-        public string Senha { get; set; }
-
         public Jogador()
         {
 
+        }
+
+        public Jogador(string nome)
+        {
+            this.Nome = nome;
         }
     }
 }

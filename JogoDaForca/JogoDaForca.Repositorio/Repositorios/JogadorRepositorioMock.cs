@@ -15,10 +15,10 @@ namespace RepositorioMock.Mock
         public JogadorRepositorioMock()
         {
             jogador = new List<Jogador>();
-            Jogador jogador1 = new Jogador() { Id = 1, Nome = "Rafael", Senha = "123" };
-            Jogador jogador2 = new Jogador() { Id = 2, Nome = "Rodrigo", Senha = "1234" };
-            Jogador jogador3 = new Jogador() { Id = 3, Nome = "Regis", Senha = "12345" };
-            Jogador jogador4 = new Jogador() { Id = 4, Nome = "Otavio", Senha = "123456" };
+            Jogador jogador1 = new Jogador() { Id = 1, Nome = "Rafael"};
+            Jogador jogador2 = new Jogador() { Id = 2, Nome = "Rodrigo"};
+            Jogador jogador3 = new Jogador() { Id = 3, Nome = "Regis"};
+            Jogador jogador4 = new Jogador() { Id = 4, Nome = "Otavio"};
 
             jogador.Add(jogador1);
             jogador.Add(jogador2);
@@ -34,6 +34,11 @@ namespace RepositorioMock.Mock
         public Jogador BuscarPorID(int id)
         {
             return this.jogador.FirstOrDefault(jogador => jogador.Id == id);
+        }
+
+        public Jogador SalvarJogador(Jogador jogador)
+        {
+            throw new NotImplementedException();
         }
     }
 }

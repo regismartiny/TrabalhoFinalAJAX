@@ -13,7 +13,7 @@ namespace JogoDaForca.Dominio.ClassesDb
 
         public string Nome { get; set; }
 
-        public Dificuldade Dificuldade { get; set; }
+        public string Dificuldade { get; set; }
 
         public Palavra()
         {
