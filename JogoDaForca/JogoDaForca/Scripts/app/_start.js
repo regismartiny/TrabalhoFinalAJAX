@@ -1,3 +1,9 @@
 ﻿$(function () {
-  marvelflix.iniciar();
+  jogoDaForca.iniciar();
+  $.ajaxPrefilter((options, _, jqXHR) => {
+    jogoDaForca.toggleLoader();
+    jqXHR.done(() => {
+      jogoDaForca.toggleLoader();
+    });
+  });
 });

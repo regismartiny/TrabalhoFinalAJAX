@@ -1,6 +1,6 @@
-let marvelflix = {};
+﻿let jogoDaForca = {};
 
-marvelflix.renderizarTela = function(nome) {
+jogoDaForca.renderizarTela = function (nome) {
 
   // escondendo todas as telas antes de renderizar a tela correta
   let $subTelas = $('.sub-tela');
@@ -18,19 +18,19 @@ marvelflix.renderizarTela = function(nome) {
 
 }
 
-marvelflix.loadTemplate = function(name) {
+jogoDaForca.loadTemplate = function (name) {
 
-  let deferred = $.Deferred();
-  $.get(`/static/templates/${name}.tpl.html`).then(
-    function(template) {
-      deferred.resolve(Handlebars.compile(template));
-    }
-  );
-  return deferred.promise();
+  return new Promise((resolve, reject) => {
+    $.get(`/static/templates/${name}.tpl.html`).then(
+      (template) => {
+        resolve(Handlebars.compile(template));
+      }
+    )
+  });
 
 }
 
-marvelflix.render = function(viewElementSelector, templateName, data) {
+jogoDaForca.render = function (viewElementSelector, templateName, data) {
 
   return new Promise((resolve, reject) => {
     this.loadTemplate(templateName).then(
@@ -43,6 +43,6 @@ marvelflix.render = function(viewElementSelector, templateName, data) {
   });
 }
 
-marvelflix.iniciar = function() {
-  return marvelflix.renderizarTela('login');
+jogoDaForca.iniciar = function () {
+  return jogoDaForca.renderizarTela('login');
 };
