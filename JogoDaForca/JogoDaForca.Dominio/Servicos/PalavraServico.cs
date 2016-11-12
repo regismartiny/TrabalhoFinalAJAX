@@ -17,7 +17,7 @@ namespace JogoDaForca.Dominio.Servicos
             this.repositorio = repositorio;
         }
 
-        public Palavra BuscarPalavraPorDificuldade(Dificuldade dificuldade, List<Palavra> palavrasJaUsadas)
+        public Palavra BuscarPalavraPorDificuldade(Dificuldade dificuldade, List<String> palavrasJaUsadas)
         {
             return repositorio.BuscarPalavra(palavrasJaUsadas,dificuldade);
         }

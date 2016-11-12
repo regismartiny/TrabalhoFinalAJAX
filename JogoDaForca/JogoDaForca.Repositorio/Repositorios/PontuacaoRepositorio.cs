@@ -14,7 +14,7 @@ namespace JogoDaForca.Repositorio.Repositorios
         {
             using (var contexto = new ContextoDeDados())
             {
-                return contexto.Pontuacao.Where(p => p.Jogador.Id == jogador.Id || jogador == null).Take(10).OrderBy(a => a.Score).ToList();
+                return contexto.Pontuacao.Where(p => jogador == null || p.Jogador.Id == jogador.Id).Take(10).OrderBy(a => a.Score).ToList();
             }
         }
 

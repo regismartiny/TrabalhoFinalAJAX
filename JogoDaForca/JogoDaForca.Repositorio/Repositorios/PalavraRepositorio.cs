@@ -10,12 +10,11 @@ namespace JogoDaForca.Repositorio
 {
     public class PalavraRepositorio : IPalavraRepositorio
     {
-        public Palavra BuscarPalavra(IList<Palavra> palavrasJaUsadas, Dificuldade dificuldade)
+        public Palavra BuscarPalavra(IList<String> palavrasJaUsadas, Dificuldade dificuldade)
         {
             using(var context = new ContextoDeDados())
             {
-                var listaFiltrada = context.Palavra.Where(palavra => palavrasJaUsadas.Any(filtro => filtro.Id != palavra.Id));
-                var palavraAchada = listaFiltrada.Where(p => p.Dificuldade == dificuldade).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
+                var palavraAchada = context.Palavra.Where(palavra => palavra.Dificuldade == dificuldade && (palavrasJaUsadas.Count() == 0 || !(palavrasJaUsadas.Any(filtro => filtro.Equals(palavra.Nome))))).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
                 return palavraAchada;
             }            
         }

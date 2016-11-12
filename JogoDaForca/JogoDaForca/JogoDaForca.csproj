@@ -259,12 +259,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HeroisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JogoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuarioLogadoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\ServicoDeAutenticacao.cs" />
+    <Compile Include="Servicos\ServicoDeDependencias.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +340,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Palavra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -348,6 +351,10 @@
     <ProjectReference Include="..\JogoDaForca.Dominio\JogoDaForca.Dominio.csproj">
       <Project>{9C342C22-B6A8-4242-A0EB-A6C67FB875D7}</Project>
       <Name>JogoDaForca.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JogoDaForca.Repositorio\JogoDaForca.Repositorio.csproj">
+      <Project>{F422F974-D432-4D30-AD4B-C22FFF1C0614}</Project>
+      <Name>JogoDaForca.Repositorio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
