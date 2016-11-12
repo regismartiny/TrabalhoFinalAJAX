@@ -55,9 +55,12 @@
       <DependentUpon>201611120008418_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositorios\JogadorMock.cs" />
     <Compile Include="Repositorios\JogadorRepositorio.cs" />
+    <Compile Include="Repositorios\PalavraMock.cs" />
     <Compile Include="Repositorios\PalavraRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\PontuacaoMock.cs" />
     <Compile Include="Repositorios\PontuacaoRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
