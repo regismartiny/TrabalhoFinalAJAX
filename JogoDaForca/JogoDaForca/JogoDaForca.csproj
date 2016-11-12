@@ -276,8 +276,11 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\herois.js" />
-    <Content Include="Scripts\app\marvelflix.js" />
+    <Content Include="Scripts\app\jogo.js" />
+    <Content Include="Scripts\app\marvelflix\herois.js" />
+    <Content Include="Scripts\app\jogoDaForca.js" />
+    <Content Include="Scripts\app\marvelflix\marvelflix.js" />
+    <Content Include="Scripts\app\marvelflix\telaPrincipal.js" />
     <Content Include="Scripts\app\telaLogin.js" />
     <Content Include="Scripts\app\telaPrincipal.js" />
     <Content Include="Scripts\app\_start.js" />
