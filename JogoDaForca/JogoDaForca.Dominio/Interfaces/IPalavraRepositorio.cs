@@ -9,6 +9,6 @@ namespace JogoDaForca.Dominio.Interfaces
 {
     public interface IPalavraRepositorio
     {
-        Palavra BuscarPalavra(IList<String> palavrasJaUsadas, string dificuldade);
+        Palavra BuscarPalavra(IList<string> palavrasJaUsadas, string dificuldade);
     }
 }

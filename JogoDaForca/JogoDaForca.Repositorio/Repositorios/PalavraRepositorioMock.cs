@@ -24,19 +24,16 @@ namespace RepositorioMock
             listaDePalavras.Add(p4);
         }
 
+        public Palavra BuscarPalavra(IList<string> palavrasJaUsadas, string dificuldade)
+        {
+            throw new NotImplementedException();
+        }
+
         public Palavra BuscarPalavra(IList<string> palavrasJaUsadas, Dificuldade dificuldade)
         {
             var listaFiltrada = listaDePalavras.Where(p => palavrasJaUsadas.Any(filtro => !filtro.Equals(p.Nome)));
             Palavra palavra = listaFiltrada.Where(p => p.Dificuldade == dificuldade).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
             palavrasJaUsadas.Add(palavra.Nome);
-            return palavra;
-        }
-
-        public Palavra BuscarPalavra(IList<Palavra> palavrasJaUsadas, Dificuldade dificuldade)
-        {
-            var listaFiltrada = listaDePalavras.Where(p => palavrasJaUsadas.Any(filtro => filtro.Id != p.Id));
-            Palavra palavra =  listaFiltrada.Where(p => p.Dificuldade == dificuldade).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
-            palavrasJaUsadas.Add(palavra);
             return palavra;
         }
     }

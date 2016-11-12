@@ -1,36 +1,39 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, elemTimerDisplay) {
-    this.nomeJogador = nomeJogador;
-    this.dificuldade = dificuldade;
-    this.elemTimerDisplay = elemTimerDisplay;
-  }
-
-  iniciarPartida() {
-    switch (this.dificuldade) {
-      case 'normal':
-        iniciarPartidaNormal();
-        break;
-      case 'bh':
-        iniciarPartidaBH();
-        break;
+    constructor(palavra, nomeJogador, dificuldade, elemTimerDisplay) {
+        this.palavra = palavra;
+        this.nomeJogador = nomeJogador;
+        this.dificuldade = dificuldade;
+        this.elemTimerDisplay = elemTimerDisplay;
+        this.timer;
+        this.limiteErros;
+        this.pontuacao = 0;
     }
-  }
 
-  iniciarPartidaNormal() {
+    iniciarPartida() {
+        switch (this.dificuldade) {
+          case 'normal':
+              this.limiteErros = 5;
+            break;
+            case 'bh':
+              this.limiteErros = 2;
+              var timer = new Timer(1, this.elemTimerDisplay, function () { }).start();
+            break;
+        }
+    }
 
-  }
 
-  iniciarPartidaBH() {
-      //
-      var palavra = this.getPalavra();
-      //iniciar cronometro
-      var timer = new Timer(1, this.elemTimerDisplay, function () { }).start();
+    entrada(letra) {
 
-      //if gameover
-      timer.stop();
-  }
+    }
 
-  
+    palpite(palavraPalpite) {
+        if (palavraPalpite.toUpperCase() === this.palavra.toUpperCase()) {
+        }
+    }
 
+    fimDoJogo() {
+        if (this.dificuldade === 'bh' && this.timer != null)
+            this.timer.stop();
+    }
 
 }

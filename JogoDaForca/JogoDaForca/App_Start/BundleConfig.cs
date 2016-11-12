@@ -21,11 +21,16 @@ namespace JogoDaForca
                "~/Scripts/handlebars.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/app/herois.js",
-                "~/Scripts/app/telaPrincipal.js",
-                "~/Scripts/app/telaLogin.js",
-                "~/Scripts/app/marvelflix.js",
-                "~/Scripts/app/_start.js"));
+                "~/Scripts/app/marvelflix/herois.js",
+                "~/Scripts/app/marvelflix/telaPrincipal.js",
+                "~/Scripts/app/marvelflix/telaLogin.js",
+                "~/Scripts/app/marvelflix/marvelflix.js",
+                "~/Scripts/app/marvelflix/_start.js",
+                //"~/Scripts/app/telaPrincipal.js",
+                //"~/Scripts/app/telaLogin.js",
+                //"~/Scripts/app/jogoDaForca.js",
+                "~/Scripts/app/_start.js"
+                ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
