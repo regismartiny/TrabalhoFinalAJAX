@@ -6,11 +6,11 @@ using JogoDaForca.Dominio.ClassesDb;
 
 namespace RepositorioMock
 {
-    class PalavraMock : IPalavraRepositorio
+    class PalavraRepositorioMock : IPalavraRepositorio
     {
         private IList<Palavra> listaDePalavras;
 
-        public PalavraMock()
+        public PalavraRepositorioMock()
         {
             listaDePalavras = new List<Palavra>();
             Palavra p1 = new Palavra() { Id = 1, Nome = "Pneu", Dificuldade = Dificuldade.Normal};

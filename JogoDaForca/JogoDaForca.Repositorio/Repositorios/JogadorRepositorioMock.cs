@@ -8,11 +8,11 @@ using JogoDaForca.Dominio.ClassesDb;
 
 namespace RepositorioMock.Mock
 {
-    class JogadorMock : IJogadorRepositorio
+    class JogadorRepositorioMock : IJogadorRepositorio
     {
         private IList<Jogador> jogador;
 
-        public JogadorMock()
+        public JogadorRepositorioMock()
         {
             jogador = new List<Jogador>();
             Jogador jogador1 = new Jogador() { Id = 1, Nome = "Rafael", Senha = "123" };
