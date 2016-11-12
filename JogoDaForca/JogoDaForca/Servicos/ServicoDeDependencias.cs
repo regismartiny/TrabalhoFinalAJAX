@@ -5,6 +5,7 @@ using System.Web;
 using JogoDaForca.Dominio.Interfaces;
 using JogoDaForca.Dominio.Servicos;
 using JogoDaForca.Repositorio;
+using RepositorioMock;
 
 namespace JogoDaForca.Servicos
 {
@@ -13,6 +14,12 @@ namespace JogoDaForca.Servicos
         internal static PalavraServico MontarPalavraRepositorio()
         {
             PalavraServico servico = new PalavraServico(new PalavraRepositorio());
+            return servico;
+        }
+
+        internal static PalavraServico MontarPalavraRepositorioMock()
+        {
+            PalavraServico servico = new PalavraServico(new PalavraRepositorioMock());
             return servico;
         }
     }

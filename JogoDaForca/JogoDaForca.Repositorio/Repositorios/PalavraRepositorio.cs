@@ -10,7 +10,7 @@ namespace JogoDaForca.Repositorio
 {
     public class PalavraRepositorio : IPalavraRepositorio
     {
-        public Palavra BuscarPalavra(IList<String> palavrasJaUsadas, Dificuldade dificuldade)
+        public Palavra BuscarPalavra(IList<String> palavrasJaUsadas, String dificuldade)
         {
             using(var context = new ContextoDeDados())
             {

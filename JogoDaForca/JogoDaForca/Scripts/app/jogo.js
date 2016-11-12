@@ -1,8 +1,8 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade) {
+  constructor(nomeJogador, dificuldade, elemTimerDisplay) {
     this.nomeJogador = nomeJogador;
     this.dificuldade = dificuldade;
-    this.timer = 0;
+    this.elemTimerDisplay = elemTimerDisplay;
   }
 
   iniciarPartida() {
@@ -21,6 +21,16 @@
   }
 
   iniciarPartidaBH() {
+      //
+      var palavra = this.getPalavra();
+      //iniciar cronometro
+      var timer = new Timer(1, this.elemTimerDisplay, function () { }).start();
 
+      //if gameover
+      timer.stop();
   }
+
+  
+
+
 }

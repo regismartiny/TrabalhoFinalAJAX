@@ -285,6 +285,7 @@
     <Content Include="Scripts\app\marvelflix\telaPrincipal.js" />
     <Content Include="Scripts\app\telaLogin.js" />
     <Content Include="Scripts\app\telaPrincipal.js" />
+    <Content Include="Scripts\app\timer.js" />
     <Content Include="Scripts\app\_start.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

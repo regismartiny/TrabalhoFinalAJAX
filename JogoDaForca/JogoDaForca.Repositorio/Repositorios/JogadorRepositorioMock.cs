@@ -8,7 +8,7 @@ using JogoDaForca.Dominio.ClassesDb;
 
 namespace RepositorioMock.Mock
 {
-    class JogadorRepositorioMock : IJogadorRepositorio
+    public class JogadorRepositorioMock : IJogadorRepositorio
     {
         private IList<Jogador> jogador;
 

@@ -14,7 +14,7 @@ namespace JogoDaForca.Controllers
 {
     public class JogoController : Controller
     {
-        private PalavraServico repositorioPalavras = ServicoDeDependencias.MontarPalavraRepositorio();
+        private PalavraServico servicoPalavras = ServicoDeDependencias.MontarPalavraRepositorioMock();
 
         // GET: Palavra
         public ActionResult Index()
@@ -22,10 +22,10 @@ namespace JogoDaForca.Controllers
             return View();
         }
 
-        [ResponseType(typeof(Palavra))]
-        public Palavra GetPalavra(List<String> PalavrasJaUsadas, Dificuldade Dificuldade)
+        [ResponseType(typeof(string))]
+        public String GetPalavra(List<String> palavrasJaUsadas, string dificuldade)
         {
-            return repositorioPalavras.BuscarPalavraPorDificuldade(Dificuldade, PalavrasJaUsadas);
+            return servicoPalavras.BuscarPalavraPorDificuldade(dificuldade, palavrasJaUsadas).Nome;
         }
     }
 }
