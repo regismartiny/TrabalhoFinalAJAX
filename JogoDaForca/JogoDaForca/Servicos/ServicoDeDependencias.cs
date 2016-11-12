@@ -6,6 +6,7 @@ using JogoDaForca.Dominio.Interfaces;
 using JogoDaForca.Dominio.Servicos;
 using JogoDaForca.Repositorio;
 using RepositorioMock;
+using JogoDaForca.Repositorio.Repositorios;
 
 namespace JogoDaForca.Servicos
 {
@@ -14,6 +15,18 @@ namespace JogoDaForca.Servicos
         internal static PalavraServico MontarPalavraRepositorio()
         {
             PalavraServico servico = new PalavraServico(new PalavraRepositorio());
+            return servico;
+        }
+
+        internal static JogadorServico MontarJogadorRepositorio()
+        {
+            JogadorServico servico = new JogadorServico(new JogadorRepositorio());
+            return servico;
+        }
+
+        internal static PontuacaoServico MontarPontuacaoRepositorio()
+        {
+            PontuacaoServico servico = new PontuacaoServico(new PontuacaoRepositorio());
             return servico;
         }
 

@@ -50,9 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextoDeDados.cs" />
-    <Compile Include="Migrations\201611120008418_Initial.cs" />
-    <Compile Include="Migrations\201611120008418_Initial.Designer.cs">
-      <DependentUpon>201611120008418_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201611121859592_Initial.cs" />
+    <Compile Include="Migrations\201611121859592_Initial.Designer.cs">
+      <DependentUpon>201611121859592_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\JogadorRepositorioMock.cs" />
@@ -73,8 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611120008418_Initial.resx">
-      <DependentUpon>201611120008418_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611121859592_Initial.resx">
+      <DependentUpon>201611121859592_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

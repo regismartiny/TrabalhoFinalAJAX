@@ -8,7 +8,7 @@ using JogoDaForca.Dominio.ClassesDb;
 
 namespace JogoDaForca.Repositorio.Repositorios
 {
-    class PontuacaoRepositorio : IPontuacaoRepositorio
+    public class PontuacaoRepositorio : IPontuacaoRepositorio
     {
         public List<Pontuacao> BuscarPontuacao(Jogador jogador)
         {

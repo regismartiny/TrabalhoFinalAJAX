@@ -12,7 +12,7 @@ namespace JogoDaForca.Dominio.ClassesDb
 
         public int Score { get; set; }
 
-        public Dificuldade Dificuldade { get; set; }
+        public string Dificuldade { get; set; }
 
         public Jogador Jogador { get; set; }
 

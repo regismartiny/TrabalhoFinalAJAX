@@ -11,25 +11,22 @@ namespace JogoDaForca.Dominio.Servicos
     public class JogadorServico
     {
         private IJogadorRepositorio repositorio;
-        private IServicoDeCriptografia criptografia;
 
-        public JogadorServico(IJogadorRepositorio repositorio, IServicoDeCriptografia criptografia)
+        public JogadorServico(IJogadorRepositorio repositorio)
         {
             this.repositorio = repositorio;
-            this.criptografia = criptografia;
         }
 
-        public Jogador AutenticarJogador(string nome, string senha)
+        public Jogador AutenticarJogador(string nome)
         {
             Jogador jogadorEncontrado = this.repositorio.BuscarPorNome(nome);
-
-            string senhaCriptografada = this.criptografia.Criptografar(nome, senha);
-
-            if(jogadorEncontrado != null && jogadorEncontrado.Senha.Equals(senhaCriptografada))
+            if(jogadorEncontrado == null)
             {
-                return jogadorEncontrado;
+                var novoJogador = new Jogador(nome);
+                return repositorio.SalvarJogador(novoJogador);
             }
-            return null;
+            else return jogadorEncontrado;
         }
+
     }
 }

@@ -17,5 +17,14 @@ namespace JogoDaForca.Repositorio.Repositorios
                 return contexto.Jogador.Where(jogador => jogador.Nome.Equals(nome)).FirstOrDefault();
             }
         }
+        public Jogador SalvarJogador(Jogador jogador)
+        {
+            using (var contexto = new ContextoDeDados())
+            {
+                contexto.Jogador.Add(jogador);
+                contexto.SaveChanges();
+                return jogador;
+            }
+        }
     }
 }

@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Pontuacao.cs" />
-    <Compile Include="Enums\Dificuldade.cs" />
     <Compile Include="Models\Jogador.cs" />
     <Compile Include="Models\Palavra.cs" />
     <Compile Include="Interfaces\IJogadorRepositorio.cs" />
