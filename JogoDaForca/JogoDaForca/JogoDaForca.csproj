@@ -328,6 +328,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Static\Templates\tela-jogo.tpl.html" />
+    <Content Include="Static\Templates\tela-inicial.tpl.html" />
     <Content Include="Static\Templates\tela-principal.tpl.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

@@ -1,4 +1,4 @@
-﻿/*$(function () {
+﻿$(function () {
   jogoDaForca.iniciar();
   $.ajaxPrefilter((options, _, jqXHR) => {
       jogoDaForca.toggleLoader();
@@ -6,4 +6,4 @@
         jogoDaForca.toggleLoader();
     });
   });
-});*/
+});

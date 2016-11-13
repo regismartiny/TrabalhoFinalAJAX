@@ -9,24 +9,30 @@
         this.erros = 0;
         this.acertos = 0;
         this.palavraAtual;
-        this.carregarPalavraEIniciarPartida().bind(this);
+        this.carregarPalavraEIniciarPartida();
     }
 
     getPalavra() {
         return new Promise((resolve, reject) => {
-            $.get(`/jogo/getPalavra/?palavrasJaUsadas=${this.palavrasJaUsadas}&dificuldade=${this.dificuldade}`)
+            $.get(`/jogo?palavrasJaUsadas=${this.palavrasJaUsadas}&dificuldade=${this.dificuldade}`)
                 .then(
                   (palavra) => {
                       resolve(palavra);
                   }
-               );
+               ).catch((err) => {
+                   console.error('Erro na comunicação com o Servidor!');
+                   console.error(`${err.responseJSON.code} - ${err.responseJSON.message}`);
+               });
         });
     }
 
     carregarPalavraEIniciarPartida() {
         let self = this;
-        this.getPalavra(palavra => self.palavraAtual = palavra)
-            .then(iniciarPartida);
+        this.getPalavra(palavra => {
+            self.palavraAtual = palavra;
+            self.palavrasJaUsadas.push(palavra);
+            })
+            .then(self.iniciarPartida);
     }
 
     iniciarPartida() {
@@ -36,7 +42,7 @@
             break;
             case 'bh':
               this.limiteErros = 2;
-              var timer = new Timer(1, this.elemTimerDisplay, this.acabouOTempo).start();
+              this.timer = new Timer(1, this.elemTimerDisplay, this.acabouOTempo).start();
             break;
         }
     }
@@ -46,6 +52,7 @@
         this.timer.reset();
         if (palavra.includes(letra.toUpperCase())) {
             this.computarAcerto();
+            //substituir espacos na palavra pela letra
         }
         else {
             this.computarErro();
@@ -58,6 +65,8 @@
         else
             this.acertos++;
         //verificar se palavra está completa
+        //se palavra completa, iniciar outra rodada
+        carregarPalavraEIniciarPartida();
     }
 
     computarErro() {
@@ -86,6 +95,13 @@
     fimDoJogo() {
         if (this.dificuldade === 'bh' && this.timer != null)
             this.timer.stop();
+
+        this.enviarPontuacaoJogadorParaServidor();
+    }
+
+    enviarPontuacaoJogadorParaServidor() {
+        let pontuacao = { score: this.acertos, dificuldade: this.dificuldade, nomeJogador: this.nomeJogador };
+        $.post('/pontuacao', pontuacao);
     }
 
 }

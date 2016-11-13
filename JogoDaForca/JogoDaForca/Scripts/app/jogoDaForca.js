@@ -1,5 +1,9 @@
 ﻿let jogoDaForca = {};
 
+jogoDaForca.toggleLoader = () => {
+    ['.loader', '.tela'].forEach(seletor => $(seletor).toggle());
+};
+
 jogoDaForca.renderizarTela = function (nome) {
 
   // escondendo todas as telas antes de renderizar a tela correta
@@ -8,7 +12,7 @@ jogoDaForca.renderizarTela = function (nome) {
   let seletor = '';
 
   switch (nome) {
-    case 'principal':
+    case 'inicial':
       new TelaPrincipal('#telaPrincipal');
       break;
     case 'login':

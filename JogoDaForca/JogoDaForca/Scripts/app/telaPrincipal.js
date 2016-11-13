@@ -7,35 +7,51 @@ class TelaPrincipal {
         this.palavrasJaUsadas = [];
         this.inicializarArmazenamentoDePalavrasUsadas();
         this.renderizarEstadoInicial();
+
+        this.usuarioAtual;
+        this.dificuldadeAtual;
     }
 
     registrarBindsEventos(self) {
+        console.log('binds');
         self.$btnIniciarJogo = $('#btn-iniciar-jogo');
-        self.$btnIniciarJogo.on('click', self.novoJogo.bind(self));
-        self.$btnReset = $('#btn-reset');
-        self.$btnReset.on('click', self.reset.bind(self));
+        self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));
     }
 
     inicializarArmazenamentoDePalavrasUsadas() {
         localStorage.setItem('palavrasJaUsadas', this.palavrasJaUsadas);
     }
 
+    entrarJogoClick() {
+        this.jogadorAtual = { nome: $('#nome-jogador').val() };
+        this.dificuldadeAtual = $('#dificuldade').val();
+        let jogador = this.jogadorAtual;
+        jogoDaForca.render('.tela', 'tela-jogo', { jogador }).then(() => {
+            console.log('tela-jogo');
+            self.$btnReset = $('#btn-reset');
+            self.$btnReset.on('click', this.reset.bind(this));
+            //this.novoJogo();
+        });   
+    }
+
     reset() {
+        console.log('reset');
         this.palavrasJaUsadas = [];
         this.novoJogo();
     }
 
-    novoJogo(nomeJogador, dificuldade) {
-        
-        this.jogoAtual = new Jogo(nomeJogador, dificuldade, this.$timerDisplay, this.palavrasJaUsadas);
-      
+    novoJogo() {
+        this.jogoAtual = new Jogo(this.jogadorAtual.nome, this.dificuldadeAtual, this.$timerDisplay, this.palavrasJaUsadas);
     }
 
-
     renderizarEstadoInicial() {
+        console.log('estado-inicial');
         $('section.tela-centralizada').removeClass('tela-centralizada');
         this.$elem.show();
-        this.registrarBindsEventos();
+        let self = this;
+        jogoDaForca.render('.tela', 'tela-inicial', {
+            dificulties: [{ value: 'normal' }, {value: 'bh'}]
+        }).then(() => self.registrarBindsEventos(self));
     }
 
 }

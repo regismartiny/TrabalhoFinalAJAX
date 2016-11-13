@@ -29,7 +29,7 @@ class TelaLogin {
         self.$btnSubmit.text('Carregando...');
         self.$btnSubmit.attr('disabled', true);
         setTimeout(function () {
-          jogoDaForca.renderizarTela('principal');
+          jogoDaForca.renderizarTela('inicial');
         }, 2000);
       }
     });
