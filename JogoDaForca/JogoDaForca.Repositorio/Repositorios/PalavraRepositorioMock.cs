@@ -27,8 +27,8 @@ namespace RepositorioMock
         public Palavra BuscarPalavra(IList<string> palavrasJaUsadas, string dificuldade)
         {
             var listaFiltrada = listaDePalavras.Where(p => palavrasJaUsadas.Any(filtro => !filtro.Equals(p.Nome)));
-            Palavra palavra = listaFiltrada.Where(p => p.Dificuldade == dificuldade).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
-            palavrasJaUsadas.Add(palavra.Nome);
+            Palavra palavra = listaFiltrada.Where(p => p.Dificuldade.ToLower().Equals(dificuldade.ToLower())).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
+            //palavrasJaUsadas.Add(palavra.Nome);
             return palavra;
         }
 
@@ -36,7 +36,7 @@ namespace RepositorioMock
         {
             var listaFiltrada = listaDePalavras.Where(p => palavrasJaUsadas.Any(filtro => filtro.Id != p.Id));
             Palavra palavra =  listaFiltrada.Where(p => p.Dificuldade == dificuldade).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
-            palavrasJaUsadas.Add(palavra);
+            //palavrasJaUsadas.Add(palavra);
             return palavra;
         }
     }

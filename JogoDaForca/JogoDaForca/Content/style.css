@@ -1,0 +1,185 @@
+body{
+  background: #c1d72e;
+}
+header{
+  text-align: center;
+  padding: 20px;
+  border: solid 2px #fff;
+  color: #fff;
+  font-size:40px;
+}
+
+.cabecalho{
+  text-decoration: none;
+  margin-left: 150px;
+  color: #fff;
+}
+
+#btn-iniciar-jogo{
+  margin-top:50px;
+    background: #c1d72e;
+    color: #fff;
+    border: solid 1px #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 18px 10px;
+    width: 180px;
+    margin: 10px;
+  border-radius:5px;
+}
+
+#btn-iniciar-jogo:hover{
+    background:white;
+    border: solid 1px white;
+    color:#c1d72e;
+}
+
+div{
+  text-align: center;
+}
+
+.styled-select select {
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px;
+   width: 268px;
+  margin-bottom:30px;
+}
+
+.btn{
+  text-align:center;
+}
+
+.titulo{
+  margin-top:50px;
+  text-align: center;
+  color: #fff;
+  margin-bottom:30px;
+}
+
+.subtitulo{
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+}
+
+#btn-reset{
+  margin-top:50px;
+    background: #c1d72e;
+    color: #fff;
+    border: solid 1px #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 18px 10px;
+    width: 180px;
+    margin: 10px;
+  border-radius:5px;
+}
+
+#btn-reset:hover{
+    background:white;
+    border: solid 1px white;
+    color:#c1d72e;
+}
+
+.alfabeto{
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom:50px;
+}
+
+.login{
+  font-size: 20px;
+}
+
+.alfabeto span{
+  margin-top:50px;
+  margin-bottom:50px;
+  padding:10px;
+  color: #fff;
+  margin:20px;
+  border: solid 1px white;
+  cursor: pointer;
+}
+
+.alfabeto span:hover{
+    background:white;
+    border: solid 1px white;
+    color:#c1d72e;
+}
+
+.palavra{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 50px;
+  text-align:center;
+  color: #fff;
+}
+
+.informacoes{
+  text-align:center;
+  color:#fff;
+  font-size:20px;
+}
+
+a:link 
+{ 
+  color:#fff;
+  text-decoration:none; 
+} 
+
+.inf{
+  padding-left:100px; 
+}
+
+.timer{
+  position:absolute;
+  top:120px;
+  right:50px;
+}
+
+.usuario{
+  position:absolute;
+  top:120px;
+  right:50px;
+}
+
+#btn-voltar{
+  margin-top:50px;
+    background: #c1d72e;
+    color: #fff;
+    border: solid 1px #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 18px 10px;
+    width: 180px;
+    margin: 10px;
+  border-radius:5px;
+}
+
+#btn-voltar:hover{
+    background:white;
+    border: solid 1px white;
+    color:#c1d72e;
+}
+
+table {
+  position: relative;
+  left: 420px;
+  border-collapse: collapse;
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}

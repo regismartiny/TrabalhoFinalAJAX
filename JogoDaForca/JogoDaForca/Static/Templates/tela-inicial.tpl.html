@@ -1,15 +1,23 @@
-<div class="row">
-  <h2 class="titulo">Bem vindo!</h2>
+<header>
+    <span><a href="#" class="cabecalho" id="btn-home">Home</a></span>
+    <span><a href="#" class="cabecalho" id="btn-leaderboard">Leaderboard</a></span>
+    <span><a href="#" class="cabecalho" id="btn-logout">Logout</a></span>
+  <span class="cabecalho login">
+    <img src="http://appsisecommerce.s3.amazonaws.com/clientes/cliente6280/layout/1/img/icon-user.png?t=1452004143">
+    <span id="nome-jogador">Jogador</span>
+  </span>
+</header>
+
+      <h1 class="titulo">Jogo da Forca</h1>
+      <p class="subtitulo">Dificuldade:</p>      
+            
+<div class="styled-select green rounded">
+  <select id="dificuldade">
+    <option>Selecione...</option>
+    {{#each dificulties}}
+    <option>{{value}}</option>
+    {{/each}}
+  </select>
 </div>
-<div class="row">
-    <input type="text" id="nome-jogador" placeholder="Nome do jogador" />
-    <br>
-    <select id="dificuldade">
-        {{#each dificulties}}
-        <option>{{value}}</option>
-        {{/each}}
-    </select>
-</div>
-<div class="row">
-  <button id="btn-iniciar-jogo">Iniciar jogo</button>
-</div>
+      
+<button class="btn" id="btn-iniciar-jogo">Iniciar Jogo</button> 

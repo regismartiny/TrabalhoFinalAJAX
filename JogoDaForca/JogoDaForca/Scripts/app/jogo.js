@@ -1,50 +1,55 @@
 ﻿class Jogo {
-    constructor(nomeJogador, dificuldade, elemTimerDisplay, palavrasJaUsadas) {
+    constructor(nomeJogador, dificuldade, palavrasJaUsadas, elemTimerDisplay, elemTentativasRestantes) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.elemTimerDisplay = elemTimerDisplay;
+        this.elemTentativasRestantes = elemTentativasRestantes;
         this.palavrasJaUsadas = palavrasJaUsadas;
         this.timer;
         this.limiteErros;
         this.erros = 0;
         this.acertos = 0;
         this.palavraAtual;
+        this.elemTentativasRestantes.text(0);
         this.carregarPalavraEIniciarPartida();
     }
 
     getPalavra() {
         return new Promise((resolve, reject) => {
-            $.get(`/jogo?palavrasJaUsadas=${this.palavrasJaUsadas}&dificuldade=${this.dificuldade}`)
-                .then(
-                  (palavra) => {
-                      resolve(palavra);
-                  }
-               ).catch((err) => {
-                   console.error('Erro na comunicação com o Servidor!');
-                   console.error(`${err.responseJSON.code} - ${err.responseJSON.message}`);
+            $.get(`/jogo/getPalavra?palavrasJaUsadas=${this.palavrasJaUsadas}&dificuldade=${this.dificuldade}`)
+                .done(
+                    (palavra) => {
+                        resolve(palavra);
+                    }
+                ).catch((err) => {
+                    console.error('Erro na comunicação com o Servidor!');
+                    console.error(`${err.responseJSON.code} - ${err.responseJSON.message}`);
+                    reject(err);
                });
         });
     }
 
     carregarPalavraEIniciarPartida() {
         let self = this;
-        this.getPalavra(palavra => {
+        this.getPalavra().then(palavra => {
             self.palavraAtual = palavra;
             self.palavrasJaUsadas.push(palavra);
-            })
-            .then(self.iniciarPartida);
+            console.log('palavra:', palavra);
+            self.iniciarPartida.bind(self)();
+        });
     }
 
     iniciarPartida() {
-        switch (this.dificuldade) {
-          case 'normal':
-              this.limiteErros = 5;
+        switch (this.dificuldade.toUpperCase()) {
+          case 'NORMAL':
+            this.limiteErros = 5;
             break;
-            case 'bh':
-              this.limiteErros = 2;
-              this.timer = new Timer(1, this.elemTimerDisplay, this.acabouOTempo).start();
-            break;
+          case 'BH':
+            this.limiteErros = 2;
+            this.timer = new Timer(20, this.elemTimerDisplay, this.acabouOTempo.bind(this)).start();
+          break;
         }
+        this.elemTentativasRestantes.text(this.limiteErros);
     }
 
 
@@ -71,6 +76,7 @@
 
     computarErro() {
         this.erros++;
+        this.elemTentativasRestantes.text(this.limiteErros - this.erros);
         if (this.erros === this.limiteErros)
             this.perdeu();
     }
@@ -93,7 +99,7 @@
     }
 
     fimDoJogo() {
-        if (this.dificuldade === 'bh' && this.timer != null)
+        if (this.dificuldade.toUpperCase() === 'BH' && this.timer != null)
             this.timer.stop();
 
         this.enviarPontuacaoJogadorParaServidor();
@@ -101,7 +107,7 @@
 
     enviarPontuacaoJogadorParaServidor() {
         let pontuacao = { score: this.acertos, dificuldade: this.dificuldade, nomeJogador: this.nomeJogador };
-        $.post('/pontuacao', pontuacao);
+        $.post('/jogo/pontuacao', pontuacao);
     }
 
 }

@@ -44,7 +44,9 @@ namespace JogoDaForca
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
-                 "~/Content/Site.css"));
+                 "~/Content/Site.css",
+                 "~/Content/style.css",
+                 "~/Content/styleLogin.css"));
         }
     }
 }

@@ -275,6 +275,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\styleLogin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -328,9 +330,13 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Static\Templates\tela-jogo.tpl.html" />
     <Content Include="Static\Templates\tela-inicial.tpl.html" />
-    <Content Include="Static\Templates\tela-principal.tpl.html" />
+    <Content Include="Static\Templates\tela-jogo.tpl.html" />
+    <Content Include="Views\Home\TelaLogin.html" />
+    <Content Include="Static\Templates\tela-leaderboard.tpl.html" />
+    <Content Include="Static\Templates\_tela-jogo.tpl.html" />
+    <Content Include="Static\Templates\_tela-inicial.tpl.html" />
+    <Content Include="Static\Templates\_tela-principal.tpl.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

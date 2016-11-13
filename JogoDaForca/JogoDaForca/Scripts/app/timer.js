@@ -1,7 +1,7 @@
-﻿function Timer(seconds, target, cb) {
+﻿function Timer(seconds, $target, cb) {
     this.time = seconds;
     this.counter = seconds;
-    this.target = target;
+    this.$target = $target;
     this.callback = cb;
 }
 Timer.prototype.pad = function (s) {
@@ -20,7 +20,7 @@ Timer.prototype.done = function (s) {
     if (this.callback) this.callback();
 }
 Timer.prototype.display = function (s) {
-    this.target.innerHTML = this.pad(s);
+    this.$target.text(this.pad(s));
 }
 Timer.prototype.count = function (s) {
     var self = this;
