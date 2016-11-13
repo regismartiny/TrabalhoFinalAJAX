@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\BancoException.cs" />
     <Compile Include="Models\Pontuacao.cs" />
     <Compile Include="Models\Jogador.cs" />
     <Compile Include="Models\Palavra.cs" />

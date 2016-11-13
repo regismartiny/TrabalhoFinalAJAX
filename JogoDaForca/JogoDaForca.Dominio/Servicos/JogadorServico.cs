@@ -1,4 +1,5 @@
 ﻿using JogoDaForca.Dominio.ClassesDb;
+using JogoDaForca.Dominio.Exceptions;
 using JogoDaForca.Dominio.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace JogoDaForca.Dominio.Servicos
 
         public Jogador AutenticarJogador(string nome)
         {
+            if (nome == null) throw new BancoException("O nome não pode estar vazio");
+
             Jogador jogadorEncontrado = this.repositorio.BuscarPorNome(nome);
             if(jogadorEncontrado == null)
             {

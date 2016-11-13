@@ -1,4 +1,5 @@
 ﻿using JogoDaForca.Dominio.ClassesDb;
+using JogoDaForca.Dominio.Exceptions;
 using JogoDaForca.Dominio.Interfaces;
 using JogoDaForca.Dominio.Servicos;
 using JogoDaForca.Servicos;
@@ -27,26 +28,74 @@ namespace JogoDaForca.Controllers
         [ResponseType(typeof(string))]
         public String GetPalavra(List<String> palavrasJaUsadas, string dificuldade)
         {
-            return servicoPalavras.BuscarPalavraPorDificuldade(dificuldade, palavrasJaUsadas).Nome;
+            try
+            {
+                return servicoPalavras.BuscarPalavraPorDificuldade(dificuldade, palavrasJaUsadas).Nome;
+            }
+            catch(BancoException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+            }
+            return null;
+
         }
 
         public Jogador GetJogador(string nome)
         {
-            return servicoJogador.AutenticarJogador(nome);
+            try
+            {
+                return servicoJogador.AutenticarJogador(nome);
+            }
+            catch (BancoException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+            }
+            return null;
         }
 
         public List<Pontuacao> GetPontuacao(Jogador jogador = null)
         {
-            if (jogador == null)
+            try
             {
-                return servicoPontuacao.BuscarPontuacaoTopDez();
+                if (jogador == null)
+                {
+                    return servicoPontuacao.BuscarPontuacaoTopDez();
+                }
+                else return servicoPontuacao.BuscarPontuacaoJogador(jogador);
             }
-            else return servicoPontuacao.BuscarPontuacaoJogador(jogador);
+            catch (BancoException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+            }
+            return null;
         }
 
         public void PostPontuacao(Pontuacao pontuacao)
         {
-            servicoPontuacao.GuardarPontuacao(pontuacao);
+            try
+            {
+                servicoPontuacao.GuardarPontuacao(pontuacao);
+            }
+            catch (BancoException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+            }
         }
     }
 }

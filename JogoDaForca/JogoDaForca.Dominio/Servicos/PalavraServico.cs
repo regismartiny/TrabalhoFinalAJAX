@@ -1,4 +1,5 @@
 ﻿using JogoDaForca.Dominio.ClassesDb;
+using JogoDaForca.Dominio.Exceptions;
 using JogoDaForca.Dominio.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,9 @@ namespace JogoDaForca.Dominio.Servicos
 
         public Palavra BuscarPalavraPorDificuldade(string dificuldade, List<String> palavrasJaUsadas)
         {
-            return repositorio.BuscarPalavra(palavrasJaUsadas,dificuldade);
+            var palavraEncontrada = repositorio.BuscarPalavra(palavrasJaUsadas,dificuldade);
+            if(palavraEncontrada == null) throw new BancoException("Não tem mais palavras no banco de dados");
+            return palavraEncontrada;
         }
     }
 }
