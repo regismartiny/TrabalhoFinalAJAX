@@ -3,11 +3,10 @@ class TelaPrincipal {
     constructor(seletor) {
         this.$elem = $(seletor);
         this.$timerDisplay = $('timer');
-        registrarBindsEventos(this);
 
         this.palavrasJaUsadas = [];
         this.inicializarArmazenamentoDePalavrasUsadas();
-      //this.renderizarEstadoInicial();
+        this.renderizarEstadoInicial();
     }
 
     registrarBindsEventos(self) {
@@ -28,24 +27,8 @@ class TelaPrincipal {
 
     novoJogo(nomeJogador, dificuldade) {
         
-        getPalavra()
-            .then((palavra) => {
-                this.palavraAtual = palavra;
-                this.jogoAtual = new Jogo(palavraAtual, nomeJogador, dificuldade, this.$timerDisplay);
-            }
-        );
+        this.jogoAtual = new Jogo(nomeJogador, dificuldade, this.$timerDisplay, this.palavrasJaUsadas);
       
-    }
-
-    getPalavra() {
-        return new Promise((resolve, reject) => {
-            $.get(`/jogo/getPalavra/?palavrasJaUsadas=${this.palavrasJaUsadas}&dificuldade=${this.dificuldade}`)
-                .then(
-                  (palavra) => {
-                      resolve(palavra);
-                  }
-               );
-        });
     }
 
 
