@@ -84,6 +84,23 @@ namespace JogoDaForca.Controllers
             return null;
         }
 
+        public void PostPontuacao(int Score, string Dificuldade, string JogadorNome)
+        {
+            var pontuacao = new Pontuacao(Score, Dificuldade, new Jogador(JogadorNome));
+            try
+            {
+                servicoPontuacao.GuardarPontuacao(pontuacao);
+            }
+            catch (BancoException ex)
+            {
+                RedirectError(ex);
+            }
+            catch (Exception ex)
+            {
+                RedirectError(ex);
+            }
+        }
+
         private JsonResult RedirectError(Exception exception)
         {
 
@@ -99,22 +116,6 @@ namespace JogoDaForca.Controllers
                 return Json(error);
             }
             
-        }
-
-        public void PostPontuacao(Pontuacao pontuacao)
-        {
-            try
-            {
-                servicoPontuacao.GuardarPontuacao(pontuacao);
-            }
-            catch (BancoException ex)
-            {
-                RedirectError(ex);
-            }
-            catch (Exception ex)
-            {
-                RedirectError(ex);
-            }
         }
     }
 }

@@ -20,5 +20,12 @@ namespace JogoDaForca.Dominio.ClassesDb
         {
 
         }
+
+        public Pontuacao(int Score, string Dificuldade, Jogador Jogador)
+        {
+            this.Score = Score;
+            this.Dificuldade = Dificuldade;
+            this.Jogador = Jogador;
+        }
     }
 }
