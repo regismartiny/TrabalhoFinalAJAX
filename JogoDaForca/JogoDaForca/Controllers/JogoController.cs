@@ -6,6 +6,7 @@ using JogoDaForca.Servicos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -34,11 +35,11 @@ namespace JogoDaForca.Controllers
             }
             catch(BancoException ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                RedirectError(ex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+                RedirectError(ex);
             }
             return null;
 
@@ -52,16 +53,17 @@ namespace JogoDaForca.Controllers
             }
             catch (BancoException ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                RedirectError(ex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+                RedirectError(ex);
             }
             return null;
         }
+        
 
-        public List<Pontuacao> GetPontuacao(Jogador jogador = null)
+        public IEnumerable<Pontuacao> GetPontuacao(Jogador jogador = null)
         {
             try
             {
@@ -73,13 +75,30 @@ namespace JogoDaForca.Controllers
             }
             catch (BancoException ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                RedirectError(ex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+                RedirectError(ex);
             }
             return null;
+        }
+
+        private JsonResult RedirectError(Exception exception)
+        {
+
+            Dictionary<string, object> error = new Dictionary<string, object>();
+            if (exception.InnerException is BancoException)
+            {
+                error.Add("ErrorMessage", exception.Message);
+                return Json(error);
+            }
+            else
+            {
+                error.Add("ErrorMessage", "Ocorreu algum error inesperado, tente denovo mais tarde");
+                return Json(error);
+            }
+            
         }
 
         public void PostPontuacao(Pontuacao pontuacao)
@@ -90,11 +109,11 @@ namespace JogoDaForca.Controllers
             }
             catch (BancoException ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                RedirectError(ex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um erro inesperado, porfavor tente mais tarde");
+                RedirectError(ex);
             }
         }
     }

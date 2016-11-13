@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JogoDaForca.Dominio.Exceptions
 {
-    public class BancoException : Exception
+    public class BancoException : ApplicationException
     {
         public BancoException(string message) : base (message)
         {
