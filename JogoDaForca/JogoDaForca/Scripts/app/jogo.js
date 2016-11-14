@@ -1,5 +1,5 @@
 ﻿class Jogo {
-    constructor(nomeJogador, dificuldade, palavrasJaUsadas, elemTimerDisplay, elemTentativasRestantes) {
+    constructor(nomeJogador, dificuldade, palavrasJaUsadas, elemTimerDisplay, elemTentativasRestantes, elemLetras) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.elemTimerDisplay = elemTimerDisplay;
@@ -11,7 +11,17 @@
         this.acertos = 0;
         this.palavraAtual;
         this.elemTentativasRestantes.text(0);
+        this.registrarBindsEventos();
         this.carregarPalavraEIniciarPartida();
+    }
+
+    registrarBindsEventos() {
+        this.$btnPalpite = $('#btn-palpite');
+        this.$btnPalpite.on('click', this.palpite.bind(this));
+        this.$btnsLetras = $('.letra');
+        this.$btnsLetras.on('click', this.entrada.bind(this));
+        this.$btnReset = $('#btn-reset');
+        this.$btnReset.on('click', this.reset.bind(this));
     }
 
     getPalavra() {
@@ -53,7 +63,10 @@
     }
 
 
-    entrada(letra) {
+    entrada($event) {
+        console.log('event:', $event);
+        let letra = $event.target.outerText;
+        console.log('entrada:', letra);
         this.timer.reset();
         if (palavra.includes(letra.toUpperCase())) {
             this.computarAcerto();
@@ -98,6 +111,10 @@
         this.fimDoJogo();
     }
 
+    reset() {
+        console.log('reset');
+    }
+
     fimDoJogo() {
         if (this.dificuldade.toUpperCase() === 'BH' && this.timer != null)
             this.timer.stop();
@@ -106,8 +123,8 @@
     }
 
     enviarPontuacaoJogadorParaServidor() {
-        let pontuacao = { score: this.acertos, dificuldade: this.dificuldade, nomeJogador: this.nomeJogador };
-        $.post('/jogo/pontuacao', pontuacao);
+        let pontuacao = { score: this.acertos, dificuldade: this.dificuldade, jogadorNome: this.nomeJogador };
+        $.post('/jogo/postPontuacao', pontuacao);
     }
 
 }

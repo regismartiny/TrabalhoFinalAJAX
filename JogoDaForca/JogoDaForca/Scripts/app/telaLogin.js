@@ -26,10 +26,11 @@ class TelaLogin {
         this.defaultShowErrors();
       },
       submitHandler: function () {
+        self.usuario = $('#emailLogin').val();
         self.$btnSubmit.text('Carregando...');
         self.$btnSubmit.attr('disabled', true);
         setTimeout(function () {
-          jogoDaForca.renderizarTela('inicial');
+          jogoDaForca.renderizarTela('inicial', self.usuario);
         }, 2000);
       }
     });

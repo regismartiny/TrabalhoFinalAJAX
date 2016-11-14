@@ -81,7 +81,7 @@ namespace JogoDaForca.Controllers
         }
 
         public void PostPontuacao(int Score, string Dificuldade, string JogadorNome)
-        {
+      {
             var pontuacao = new Pontuacao(Score, Dificuldade, new Jogador(JogadorNome));
             try
             {
