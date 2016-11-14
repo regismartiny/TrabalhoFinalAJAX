@@ -80,7 +80,7 @@ insert into Palavras Values('procastinas', 'BH');
 insert into Palavras Values('conhecimento', 'BH');
 insert into Palavras Values('parcialmente', 'BH');
 insert into Palavras Values('inexplicavel', 'BH');
-insert into Palavras Values('motocondrias', 'BH');
+insert into Palavras Values('mitocondrias', 'BH');
 insert into Palavras Values('pluviosidade', 'BH');
 insert into Palavras Values('implementacao', 'BH');
 insert into Palavras Values('plausibilidade', 'BH');
