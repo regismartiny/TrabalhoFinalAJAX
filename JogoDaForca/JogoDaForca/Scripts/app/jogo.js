@@ -67,8 +67,9 @@
         console.log('event:', $event);
         let letra = $event.target.outerText;
         console.log('entrada:', letra);
-        this.timer.reset();
-        if (palavra.includes(letra.toUpperCase())) {
+        if (this.timer !== undefined)
+            this.timer.reset();
+        if (this.palavraAtual.includes(letra.toUpperCase())) {
             this.computarAcerto();
             //substituir espacos na palavra pela letra
         }
@@ -84,7 +85,7 @@
             this.acertos++;
         //verificar se palavra está completa
         //se palavra completa, iniciar outra rodada
-        carregarPalavraEIniciarPartida();
+        this.carregarPalavraEIniciarPartida();
     }
 
     computarErro() {
