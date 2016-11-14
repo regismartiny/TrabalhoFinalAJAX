@@ -24,7 +24,8 @@ class TelaPrincipal {
 
     irParaTelaLeaderboard() {
         let self = this;
-        jogoDaForca.render('.tela', 'tela-leaderboard').then(() => {
+        jogoDaForca.render('.tela', 'tela-leaderboard', 
+          { dados: { jogador: this.jogadorAtual } }).then(() => {
             console.log('tela-leaderboard');
             self.registrarBindsEventos(self);
         });
@@ -45,10 +46,12 @@ class TelaPrincipal {
         jogoDaForca.render('.tela', 'tela-jogo', { dados }).then(() => {
             console.log('tela-jogo');
             self.registrarBindsEventos(self);
-            self.$timerDisplay = $('#timer');
-            self.$tentativasRestantes = $('#tentativas-restantes');
+            self.$elemTimerDisplay = $('#timer');
+            self.$elemTentativasRestantes = $('#tentativas-restantes');
             self.$btnReset = $('#btn-reset');
             self.$btnReset.on('click', self.reset.bind(self));
+            self.$btnPalpite = $('#btn-palpite');
+            self.$elemLetras = $('.letra');
             self.novoJogo();
         });   
     }
@@ -61,7 +64,7 @@ class TelaPrincipal {
 
     novoJogo() {
         console.log('jogador:', this.jogadorAtual);
-        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$timerDisplay, this.$tentativasRestantes);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnPalpite, this.$elemLetras);
     }
 
     renderizarEstadoInicial() {
@@ -70,7 +73,8 @@ class TelaPrincipal {
         this.$elem.show();
         let self = this;
         jogoDaForca.render('.tela', 'tela-inicial', {
-            dificulties: [{ value: 'NORMAL' }, { value: 'BH' }]
+          dificulties: [{ value: 'NORMAL' }, { value: 'BH' }],
+          dados : { jogador : this.jogadorAtual }
         }).then(() => {
             self.$btnIniciarJogo = $('#btn-iniciar-jogo');
             self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));

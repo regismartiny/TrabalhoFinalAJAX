@@ -1,26 +1,26 @@
 ﻿class Jogo {
-    constructor(nomeJogador, dificuldade, palavrasJaUsadas, elemTimerDisplay, elemTentativasRestantes, elemLetras) {
+  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnPalpite, $elemLetras) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
-        this.elemTimerDisplay = elemTimerDisplay;
-        this.elemTentativasRestantes = elemTentativasRestantes;
+        this.$elemTimerDisplay = $elemTimerDisplay;
+        this.$elemTentativasRestantes = $elemTentativasRestantes;
+        this.$btnReset = $btnReset;
+        this.$btnPalpite = $btnPalpite;
+        this.$elemLetras = $elemLetras;
         this.palavrasJaUsadas = palavrasJaUsadas;
         this.timer;
         this.limiteErros;
         this.erros = 0;
         this.acertos = 0;
         this.palavraAtual;
-        this.elemTentativasRestantes.text(0);
+        this.$elemTentativasRestantes.text(0);
         this.registrarBindsEventos();
         this.carregarPalavraEIniciarPartida();
     }
 
     registrarBindsEventos() {
-        this.$btnPalpite = $('#btn-palpite');
         this.$btnPalpite.on('click', this.palpite.bind(this));
-        this.$btnsLetras = $('.letra');
-        this.$btnsLetras.on('click', this.entrada.bind(this));
-        this.$btnReset = $('#btn-reset');
+        this.$elemLetras.on('click', this.entrada.bind(this));
         this.$btnReset.on('click', this.reset.bind(this));
     }
 
@@ -53,13 +53,15 @@
         switch (this.dificuldade.toUpperCase()) {
           case 'NORMAL':
             this.limiteErros = 5;
+            console.log(this.$elemTimerDisplay);
+            this.$elemTimerDisplay.hide();
             break;
           case 'BH':
             this.limiteErros = 2;
-            this.timer = new Timer(20, this.elemTimerDisplay, this.acabouOTempo.bind(this)).start();
+            this.timer = new Timer(20, this.$elemTimerDisplay, this.acabouOTempo.bind(this)).start();
           break;
         }
-        this.elemTentativasRestantes.text(this.limiteErros);
+        this.$elemTentativasRestantes.text(this.limiteErros);
     }
 
 
@@ -90,7 +92,7 @@
 
     computarErro() {
         this.erros++;
-        this.elemTentativasRestantes.text(this.limiteErros - this.erros);
+        this.$elemTentativasRestantes.text(this.limiteErros - this.erros);
         if (this.erros === this.limiteErros)
             this.perdeu();
     }
