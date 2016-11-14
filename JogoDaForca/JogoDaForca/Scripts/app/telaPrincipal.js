@@ -51,8 +51,8 @@ class TelaPrincipal {
             self.$btnReset.on('click', self.reset.bind(self));
             self.$elemDivChute = $('#div-chute');
             self.$elemPalavraChute = $('#palavra-chute');
-            self.$btnPalpite = $('#btn-palpite');
-            self.$btnPalpite.on('click', () => { self.$btnPalpite.hide(); self.$elemDivChute.show() });
+            self.$btnChute = $('#btn-chute');
+            self.$btnChute.on('click', () => { self.$btnChute.hide(); self.$elemDivChute.show() });
             self.$elemLetras = $('.letra');
             self.$elemPalavra = $('#palavra');
             self.novoJogo();
@@ -67,7 +67,7 @@ class TelaPrincipal {
 
     novoJogo() {
         console.log('jogador:', this.jogadorAtual);
-        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$elemPalavraChute, this.$elemLetras, this.$elemPalavra);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnChute, this.$elemDivChute, this.$elemPalavraChute, this.$elemLetras, this.$elemPalavra);
     }
 
     renderizarEstadoInicial() {

@@ -1,10 +1,12 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $elemPalavraChute, $elemLetras, $elemPalavra) {
+  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnChute, $elemDivChute, $elemPalavraChute, $elemLetras, $elemPalavra) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.$elemTimerDisplay = $elemTimerDisplay;
         this.$elemTentativasRestantes = $elemTentativasRestantes;
         this.$btnReset = $btnReset;
+        this.$btnChute = $btnChute;
+        this.$elemDivChute = $elemDivChute;
         this.$elemPalavraChute = $elemPalavraChute;
         this.$elemLetras = $elemLetras;
         this.$elemPalavra = $elemPalavra;
@@ -20,7 +22,7 @@
   }
 
     registrarBindsEventos() {
-        this.$elemPalavraChute.on('keyup', this.palpite.bind(this));
+        this.$elemPalavraChute.keyup(this.chute.bind(this));
         this.$elemLetras.on('click', this.entrada.bind(this));
         this.$btnReset.on('click', this.reset.bind(this));
     }
@@ -112,16 +114,23 @@
             this.perdeu();
     }
 
-    palpite($event) {
+    chute($event) {
       console.log('event:', $event);
-      console.log('key:', $event.wich);
-      if (event.keyCode === 23)
-        if (palavraPalpite.toUpperCase() === this.palavraAtual.toUpperCase()) {
-          computarAcerto(true);
+      let keyCode = $event.originalEvent.keyCode;
+      let palavraChute = $event.target.value;
+      console.log('key:', keyCode);
+      if (keyCode === 13) {//ENTER
+        if (palavraChute.toUpperCase() === this.palavraAtual.toUpperCase()) {
+          this.computarAcerto(true);
         }
         else {
           this.perdeu();
         }
+      } else if (keyCode === 27) {//ESC
+        this.$elemDivChute.hide();
+        this.$btnChute.show();
+        //$event.target.style.display = "none";
+      }
     }
 
     acabouOTempo() {
