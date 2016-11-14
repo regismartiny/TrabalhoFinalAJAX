@@ -1,15 +1,25 @@
 
 
  <h1 class="titulo">Jogo da Forca</h1>
- <p class="subtitulo">Dificuldade:</p>      
-            
-<div class="styled-select green rounded">
-  <select id="dificuldade">
-    <option>Selecione...</option>
-    {{#each dificuldades}}
-    <option>{{value}}</option>
-    {{/each}}
-  </select>
+
+<!-- radio buttom-->
+<div class="switch-field">
+    <div class="switch-title">Dificuldade:</div>
+    <input type="radio" id="switch_left" name="switch_2" value="NORMAL" checked />
+    <label for="switch_left">Normal</label>
+    <input type="radio" id="switch_right" name="switch_2" value="BH" />
+    <label for="switch_right">BH</label>
 </div>
-      
-<button class="btn" id="btn-iniciar-jogo">Iniciar Jogo</button> 
+
+<!-- dropdown -->
+    <p class="subtitulo">Dificuldade:</p>  
+    <div class="styled-select green rounded">
+        <select id="dificuldade">
+            <option>Selecione...</option>
+            {{#each dificuldades}}
+            <option>{{value}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <button class="btn" id="btn-iniciar-jogo">Iniciar Jogo</button>
