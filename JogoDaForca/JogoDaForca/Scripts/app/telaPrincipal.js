@@ -67,7 +67,7 @@ class TelaPrincipal {
 
     novoJogo() {
         console.log('jogador:', this.jogadorAtual);
-        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnPalpite, this.$elemLetras, this.$elemPalavra);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$elemPalavraChute, this.$elemLetras, this.$elemPalavra);
     }
 
     renderizarEstadoInicial() {
@@ -80,6 +80,8 @@ class TelaPrincipal {
           jogador: this.jogadorAtual
         };
         jogoDaForca.render('.tela', 'tela-inicial', dados).then(() => {
+            self.$cabecalho = ('#cabecalho');
+            self.$cabecalho.show();
             self.$btnIniciarJogo = $('#btn-iniciar-jogo');
             self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));
             self.registrarBindsEventos(self)

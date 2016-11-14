@@ -1,11 +1,11 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnPalpite, $elemLetras, $elemPalavra) {
+  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $elemPalavraChute, $elemLetras, $elemPalavra) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.$elemTimerDisplay = $elemTimerDisplay;
         this.$elemTentativasRestantes = $elemTentativasRestantes;
         this.$btnReset = $btnReset;
-        this.$btnPalpite = $btnPalpite;
+        this.$elemPalavraChute = $elemPalavraChute;
         this.$elemLetras = $elemLetras;
         this.$elemPalavra = $elemPalavra;
         this.palavrasJaUsadas = palavrasJaUsadas;
@@ -20,7 +20,7 @@
   }
 
     registrarBindsEventos() {
-        this.$btnPalpite.on('click', this.palpite.bind(this));
+        this.$elemPalavraChute.on('click', this.palpite.bind(this));
         this.$elemLetras.on('click', this.entrada.bind(this));
         this.$btnReset.on('click', this.reset.bind(this));
     }
@@ -112,12 +112,14 @@
             this.perdeu();
     }
 
-    palpite(palavraPalpite) {
+    palpite(event) {
+      console.log('key:', event.keyCode);
+      if (event.keyCode === 23)
         if (palavraPalpite.toUpperCase() === this.palavraAtual.toUpperCase()) {
-            computarAcerto(true);
+          computarAcerto(true);
         }
         else {
-            this.perdeu();
+          this.perdeu();
         }
     }
 
