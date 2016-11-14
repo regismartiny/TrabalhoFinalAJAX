@@ -2,13 +2,12 @@ class TelaPrincipal {
   
     constructor(seletor, usuario) {
         this.$elem = $(seletor);
-
-        this.palavrasJaUsadas = [];
-        this.inicializarArmazenamentoDePalavrasUsadas();
-        this.renderizarEstadoInicial();
-
         this.jogadorAtual = usuario;
         this.dificuldadeAtual;
+        this.palavrasJaUsadas = [];
+
+        this.inicializarArmazenamentoDePalavrasUsadas();
+        this.renderizarEstadoInicial(); 
     }
 
     registrarBindsEventos(self) {
@@ -72,10 +71,12 @@ class TelaPrincipal {
         $('section.tela-centralizada').removeClass('tela-centralizada');
         this.$elem.show();
         let self = this;
-        jogoDaForca.render('.tela', 'tela-inicial', {
-          dificulties: [{ value: 'NORMAL' }, { value: 'BH' }],
-          dados : { jogador : this.jogadorAtual }
-        }).then(() => {
+        let dados = {
+          dificuldades: [{ value: 'NORMAL' }, { value: 'BH' }],
+          jogador: this.jogadorAtual
+        };
+        console.log(dados);
+        jogoDaForca.render('.tela', 'tela-inicial', dados).then(() => {
             self.$btnIniciarJogo = $('#btn-iniciar-jogo');
             self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));
             self.registrarBindsEventos(self)
