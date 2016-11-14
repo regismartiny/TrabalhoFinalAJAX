@@ -3,11 +3,18 @@ body{
   overflow:auto;
 }
 header{
+  position:fixed;
+  width:100%;
   text-align: center;
   padding: 20px;
   border: solid 2px #fff;
   color: #fff;
+  background: #c1d72e;
   font-size:40px;
+}
+
+#cabecalho{
+    display:none;
 }
 
 .cabecalho{
@@ -61,7 +68,7 @@ div{
 }
 
 .titulo{
-  margin-top:50px;
+  margin-top:150px;
   text-align: center;
   color: #fff;
   margin-bottom:30px;
