@@ -49,8 +49,12 @@ class TelaPrincipal {
             self.$elemTentativasRestantes = $('#tentativas-restantes');
             self.$btnReset = $('#btn-reset');
             self.$btnReset.on('click', self.reset.bind(self));
+            self.$elemDivChute = $('#div-chute');
+            self.$elemPalavraChute = $('#palavra-chute');
             self.$btnPalpite = $('#btn-palpite');
+            self.$btnPalpite.on('click', self.$elemDivChute.show)
             self.$elemLetras = $('.letra');
+            self.$elemPalavra = $('#palavra');
             self.novoJogo();
         });   
     }
@@ -63,7 +67,7 @@ class TelaPrincipal {
 
     novoJogo() {
         console.log('jogador:', this.jogadorAtual);
-        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnPalpite, this.$elemLetras);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnPalpite, this.$elemLetras, this.$elemPalavra);
     }
 
     renderizarEstadoInicial() {
@@ -75,7 +79,6 @@ class TelaPrincipal {
           dificuldades: [{ value: 'NORMAL' }, { value: 'BH' }],
           jogador: this.jogadorAtual
         };
-        console.log(dados);
         jogoDaForca.render('.tela', 'tela-inicial', dados).then(() => {
             self.$btnIniciarJogo = $('#btn-iniciar-jogo');
             self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));

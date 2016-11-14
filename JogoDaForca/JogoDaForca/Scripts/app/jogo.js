@@ -1,5 +1,5 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnPalpite, $elemLetras) {
+  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnPalpite, $elemLetras, $elemPalavra) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.$elemTimerDisplay = $elemTimerDisplay;
@@ -7,6 +7,7 @@
         this.$btnReset = $btnReset;
         this.$btnPalpite = $btnPalpite;
         this.$elemLetras = $elemLetras;
+        this.$elemPalavra = $elemPalavra;
         this.palavrasJaUsadas = palavrasJaUsadas;
         this.timer;
         this.limiteErros;
@@ -16,7 +17,7 @@
         this.$elemTentativasRestantes.text(0);
         this.registrarBindsEventos();
         this.carregarPalavraEIniciarPartida();
-    }
+  }
 
     registrarBindsEventos() {
         this.$btnPalpite.on('click', this.palpite.bind(this));
@@ -42,11 +43,25 @@
     carregarPalavraEIniciarPartida() {
         let self = this;
         this.getPalavra().then(palavra => {
+            console.log('palavra:', palavra);
             self.palavraAtual = palavra;
             self.palavrasJaUsadas.push(palavra);
-            console.log('palavra:', palavra);
+            self.atualizarSombraPalavra.bind(self)();
             self.iniciarPartida.bind(self)();
         });
+    }
+
+    atualizarSombraPalavra() {
+      let sombraPalavra = '';
+      for (let i = 0; i < this.palavraAtual.length; i++) {
+        sombraPalavra += ' ';
+        if (this.palavraAtual[i] === '-')
+          sombraPalavra += '-';
+        else
+          sombraPalavra += '_';
+      }
+      this.$elemPalavra.text(sombraPalavra);
+      console.log('sombra-palavra:', sombraPalavra);
     }
 
     iniciarPartida() {
