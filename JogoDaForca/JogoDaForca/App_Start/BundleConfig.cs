@@ -43,8 +43,7 @@ namespace JogoDaForca
                 "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                 "~/Content/Loader.css",
-                "~/Content/bootstrap.css",
+                 "~/Content/bootstrap.css",
                  "~/Content/Site.css",
                  "~/Content/style.css",
                  "~/Content/styleLogin.css"));
