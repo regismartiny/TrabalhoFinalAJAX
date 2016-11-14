@@ -1,5 +1,5 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnPalpite, $elemLetras) {
+  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnPalpite, $elemLetras, $elemPalavra) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.$elemTimerDisplay = $elemTimerDisplay;
