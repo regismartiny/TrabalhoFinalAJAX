@@ -16,6 +16,8 @@ header{
 }
 
 #btn-iniciar-jogo{
+    position:relative;
+    left:475px;
   margin-top:50px;
   background: #c1d72e;
   color: #fff;
@@ -146,7 +148,7 @@ a:link
 }
 
 #btn-voltar{
-  margin-top:50px;
+  margin-top:150px;
     background: #c1d72e;
     color: #fff;
     border: solid 1px #fff;
@@ -166,8 +168,7 @@ a:link
 
 table {
   position: relative;
-  left: 420px;
-  border-collapse: collapse;
+  left: 340px;
   width: 500px;
   margin-bottom: 50px;
 }
@@ -207,5 +208,5 @@ th {
 }
 
 #btn-pagina-anterior{
-  right: 440px;
+  right: 415px;
 }
