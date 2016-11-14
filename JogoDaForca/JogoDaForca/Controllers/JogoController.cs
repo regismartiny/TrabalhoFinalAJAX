@@ -82,7 +82,8 @@ namespace JogoDaForca.Controllers
 
         public void PostPontuacao(int Score, string Dificuldade, string JogadorNome)
       {
-            var pontuacao = new Pontuacao(Score, Dificuldade, new Jogador(JogadorNome));
+            var jogadorEncontrado = servicoJogador.AutenticarJogador(JogadorNome);
+            var pontuacao = new Pontuacao(Score, Dificuldade, jogadorEncontrado);
             try
             {
                 servicoPontuacao.GuardarPontuacao(pontuacao);
