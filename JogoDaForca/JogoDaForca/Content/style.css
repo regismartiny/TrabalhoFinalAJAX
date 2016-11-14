@@ -17,14 +17,14 @@ header{
 
 #btn-iniciar-jogo{
   margin-top:50px;
-    background: #c1d72e;
-    color: #fff;
-    border: solid 1px #fff;
-    cursor: pointer;
-    font-size: 1.2em;
-    padding: 18px 10px;
-    width: 180px;
-    margin: 10px;
+  background: #c1d72e;
+  color: #fff;
+  border: solid 1px #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 18px 10px;
+  width: 180px;
+  margin: 10px;
   border-radius:5px;
 }
 
@@ -182,4 +182,30 @@ tr:nth-child(even){background-color: #f2f2f2}
 th {
     background-color: #4CAF50;
     color: white;
+}
+
+.wrapper{
+  display:inline; 
+  margin:5px auto;
+}
+
+
+.btn-saga {
+  position: absolute;
+  border: 0;
+  font:300 14px 'Open Sans';
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius:5px;
+  margin-left: 30px;
+  cursor: pointer;
+  background: -webkit-linear-gradient(left, rgba(85, 237, 79, 1) 40px, rgba(85, 237, 79, 1) 0);
+}
+
+#btn-proxima-pagina{
+  left: 395px;
+}
+
+#btn-pagina-anterior{
+  right: 440px;
 }
