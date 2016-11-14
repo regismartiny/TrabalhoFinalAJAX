@@ -16,8 +16,8 @@ header{
 }
 
 #btn-iniciar-jogo{
-    position:relative;
-    left:475px;
+  position:relative;
+  left:475px;
   margin-top:50px;
   background: #c1d72e;
   color: #fff;
@@ -127,8 +127,8 @@ div{
 
 a:link 
 { 
-  color:#fff;
   text-decoration:none; 
+  color:#fff;
 } 
 
 .inf{
