@@ -49,7 +49,10 @@ class TelaPrincipal {
             self.$elemTentativasRestantes = $('#tentativas-restantes');
             self.$btnReset = $('#btn-reset');
             self.$btnReset.on('click', self.reset.bind(self));
+            self.$elemDivChute = $('#div-chute');
+            self.$elemPalavraChute = $('#palavra-chute');
             self.$btnPalpite = $('#btn-palpite');
+            self.$btnPalpite.on('click', self.$elemDivChute.show)
             self.$elemLetras = $('.letra');
             self.$elemPalavra = $('#palavra');
             self.novoJogo();
