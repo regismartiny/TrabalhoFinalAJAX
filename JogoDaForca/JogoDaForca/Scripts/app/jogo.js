@@ -20,7 +20,7 @@
   }
 
     registrarBindsEventos() {
-        this.$elemPalavraChute.on('click', this.palpite.bind(this));
+        this.$elemPalavraChute.on('keyup', this.palpite.bind(this));
         this.$elemLetras.on('click', this.entrada.bind(this));
         this.$btnReset.on('click', this.reset.bind(this));
     }
@@ -112,8 +112,9 @@
             this.perdeu();
     }
 
-    palpite(event) {
-      console.log('key:', event.keyCode);
+    palpite($event) {
+      console.log('event:', $event);
+      console.log('key:', $event.wich);
       if (event.keyCode === 23)
         if (palavraPalpite.toUpperCase() === this.palavraAtual.toUpperCase()) {
           computarAcerto(true);

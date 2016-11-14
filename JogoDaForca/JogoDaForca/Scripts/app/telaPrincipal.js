@@ -41,7 +41,7 @@ class TelaPrincipal {
     entrarJogoClick() {
         let self = this;
         this.dificuldadeAtual = $('#dificuldade').val();
-        let dados = { jogador: this.jogadorAtual, dificuldade: this.dificuldadeAtual };
+        let dados = { dificuldade: this.dificuldadeAtual };
         jogoDaForca.render('.tela', 'tela-jogo', { dados }).then(() => {
             console.log('tela-jogo');
             self.registrarBindsEventos(self);
@@ -52,7 +52,7 @@ class TelaPrincipal {
             self.$elemDivChute = $('#div-chute');
             self.$elemPalavraChute = $('#palavra-chute');
             self.$btnPalpite = $('#btn-palpite');
-            self.$btnPalpite.on('click', self.$elemDivChute.show)
+            self.$btnPalpite.on('click', () => { self.$btnPalpite.hide(); self.$elemDivChute.show() });
             self.$elemLetras = $('.letra');
             self.$elemPalavra = $('#palavra');
             self.novoJogo();
@@ -76,12 +76,11 @@ class TelaPrincipal {
         this.$elem.show();
         let self = this;
         let dados = {
-          dificuldades: [{ value: 'NORMAL' }, { value: 'BH' }],
-          jogador: this.jogadorAtual
+          dificuldades: [{ value: 'NORMAL' }, { value: 'BH' }]
         };
         jogoDaForca.render('.tela', 'tela-inicial', dados).then(() => {
-            self.$cabecalho = ('#cabecalho');
-            self.$cabecalho.show();
+            $('#cabecalho').show();
+            $('#nome-jogador').text(self.jogadorAtual);
             self.$btnIniciarJogo = $('#btn-iniciar-jogo');
             self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));
             self.registrarBindsEventos(self)
