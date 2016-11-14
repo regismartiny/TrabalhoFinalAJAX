@@ -50,7 +50,7 @@ div{
 
 #div-chute{
     display:none;
-    margin-left:300px;
+    margin-left:450px;
     width:500px;
 }
 
@@ -67,8 +67,14 @@ div{
   text-align:center;
 }
 
+.resetar{
+    position:absolute;
+    top:150px;
+    right:50px;
+}
+
 .titulo{
-  margin-top:150px;
+  margin-top:120px;
   text-align: center;
   color: #fff;
   margin-bottom:30px;
@@ -137,6 +143,11 @@ div{
   text-align:center;
   color:#fff;
   font-size:20px;
+}
+
+.informacoes2{
+  color:#fff;
+  font-size:10px;
 }
 
 a:link 
