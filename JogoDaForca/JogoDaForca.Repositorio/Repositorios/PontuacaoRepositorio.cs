@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JogoDaForca.Dominio.ClassesDb;
+using System.Data.Entity;
 
 namespace JogoDaForca.Repositorio.Repositorios
 {
@@ -22,6 +23,7 @@ namespace JogoDaForca.Repositorio.Repositorios
         {
             using (var contexto = new ContextoDeDados())
             {
+                contexto.Entry(pontuacao.Jogador).State = EntityState.Unchanged;
                 contexto.Pontuacao.Add(pontuacao);
                 contexto.SaveChanges();
             }
