@@ -41,7 +41,7 @@ class TelaPrincipal {
     entrarJogoClick() {
         let self = this;
         this.dificuldadeAtual = $('#dificuldade').val();
-        let dados = { jogador: this.jogadorAtual, dificuldade: this.dificuldadeAtual };
+        let dados = { dificuldade: this.dificuldadeAtual };
         jogoDaForca.render('.tela', 'tela-jogo', { dados }).then(() => {
             console.log('tela-jogo');
             self.registrarBindsEventos(self);
@@ -49,8 +49,12 @@ class TelaPrincipal {
             self.$elemTentativasRestantes = $('#tentativas-restantes');
             self.$btnReset = $('#btn-reset');
             self.$btnReset.on('click', self.reset.bind(self));
-            self.$btnPalpite = $('#btn-palpite');
+            self.$elemDivChute = $('#div-chute');
+            self.$elemPalavraChute = $('#palavra-chute');
+            self.$btnChute = $('#btn-chute');
+            self.$btnChute.on('click', () => { self.$btnChute.hide(); self.$elemDivChute.show() });
             self.$elemLetras = $('.letra');
+            self.$elemPalavra = $('#palavra');
             self.novoJogo();
         });   
     }
@@ -63,7 +67,7 @@ class TelaPrincipal {
 
     novoJogo() {
         console.log('jogador:', this.jogadorAtual);
-        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnPalpite, this.$elemLetras);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnChute, this.$elemDivChute, this.$elemPalavraChute, this.$elemLetras, this.$elemPalavra);
     }
 
     renderizarEstadoInicial() {
@@ -72,11 +76,11 @@ class TelaPrincipal {
         this.$elem.show();
         let self = this;
         let dados = {
-          dificuldades: [{ value: 'NORMAL' }, { value: 'BH' }],
-          jogador: this.jogadorAtual
+          dificuldades: [{ value: 'NORMAL' }, { value: 'BH' }]
         };
-        console.log(dados);
         jogoDaForca.render('.tela', 'tela-inicial', dados).then(() => {
+            $('#cabecalho').show();
+            $('#nome-jogador').text(self.jogadorAtual);
             self.$btnIniciarJogo = $('#btn-iniciar-jogo');
             self.$btnIniciarJogo.on('click', self.entrarJogoClick.bind(self));
             self.registrarBindsEventos(self)
