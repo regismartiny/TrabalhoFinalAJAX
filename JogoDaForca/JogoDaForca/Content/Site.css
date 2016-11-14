@@ -52,16 +52,6 @@ label {
   color: red;
 }
 
-.thumbnail {
-  height: 200px;
-  width: 200px;
-}
-
-.capa-comic {
-  height: 230px;
-  width: 195px;
-}
-
 #container-botao-entrar {
   padding-left: 0;
   margin-left: 114px;
@@ -69,8 +59,4 @@ label {
 
 #container-botao-entrar button {
   width: 104px;
-}
-
-.nome-item {
-  color: azure;
 }

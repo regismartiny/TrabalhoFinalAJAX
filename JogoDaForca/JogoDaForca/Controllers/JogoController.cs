@@ -20,12 +20,8 @@ namespace JogoDaForca.Controllers
         private JogadorServico servicoJogador = ServicoDeDependencias.MontarJogadorRepositorio();
         private PontuacaoServico servicoPontuacao = ServicoDeDependencias.MontarPontuacaoRepositorio();
 
-        // GET: Palavra
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+        // GET: Palavra
         [ResponseType(typeof(string))]
         public String GetPalavra(List<String> palavrasJaUsadas, string dificuldade)
         {

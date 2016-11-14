@@ -61,7 +61,7 @@ class TelaPrincipal {
     }
 
     novoJogo() {
-        this.jogoAtual = new Jogo(this.jogadorAtual.nome, this.dificuldadeAtual, this.palavrasJaUsadas, this.$timerDisplay, this.$tentativasRestantes);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$timerDisplay, this.$tentativasRestantes);
     }
 
     renderizarEstadoInicial() {
