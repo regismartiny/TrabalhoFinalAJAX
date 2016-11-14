@@ -40,6 +40,12 @@ div{
   text-align: center;
 }
 
+.chute{
+    visibility:hidden;
+    margin-left:300px;
+    width:500px;
+}
+
 .styled-select select {
    border: none;
    font-size: 14px;
