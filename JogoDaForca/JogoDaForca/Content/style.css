@@ -129,6 +129,11 @@ a:link
 { 
   text-decoration:none; 
   color:#fff;
+}
+
+a:visited{
+  text-decoration:none; 
+  color:#fff;
 } 
 
 .inf{
@@ -144,7 +149,8 @@ a:link
 .usuario{
   position:absolute;
   top:120px;
-  right:50px;
+  left:0px;
+  font-size:medium;
 }
 
 #btn-voltar{
