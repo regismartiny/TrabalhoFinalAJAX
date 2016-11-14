@@ -16,6 +16,8 @@
         this.erros = 0;
         this.acertos = 0;
         this.palavraAtual;
+        this.palavraSombra = '';
+        this.qtdLetrasAcertadas = 0;
         this.$elemTentativasRestantes.text(0);
         this.registrarBindsEventos();
         this.carregarPalavraEIniciarPartida();
@@ -48,22 +50,25 @@
             console.log('palavra:', palavra);
             self.palavraAtual = palavra;
             self.palavrasJaUsadas.push(palavra);
-            self.atualizarSombraPalavra.bind(self)();
+            self.criarSombraPalavra.bind(self)();
             self.iniciarPartida.bind(self)();
         });
     }
 
-    atualizarSombraPalavra() {
-      let sombraPalavra = '';
+    criarSombraPalavra() {
       for (let i = 0; i < this.palavraAtual.length; i++) {
-        sombraPalavra += ' ';
         if (this.palavraAtual[i] === '-')
-          sombraPalavra += '-';
+          this.palavraSombra += '-';
         else
-          sombraPalavra += '_';
+          this.palavraSombra += '_';
       }
-      this.$elemPalavra.text(sombraPalavra);
-      console.log('sombra-palavra:', sombraPalavra);
+      this.$elemPalavra.text(this.palavraSombra);
+      console.log('sombra-palavra:', this.palavraSombra);
+    }
+
+    atualizarSombraPalavra() {
+      this.$elemPalavra.text(this.palavraSombra);
+      console.log('sombra-palavra:', this.palavraSombra);
     }
 
     iniciarPartida() {
@@ -84,13 +89,26 @@
 
     entrada($event) {
         console.log('event:', $event);
-        let letra = $event.target.outerText;
+        let letra = $event.target.outerText.toUpperCase();
         console.log('entrada:', letra);
         if (this.timer !== undefined)
-            this.timer.reset();
-        if (this.palavraAtual.includes(letra.toUpperCase())) {
-            this.computarAcerto();
-            //substituir espacos na palavra pela letra
+          this.timer.reset();
+        let palavra = this.palavraAtual.toUpperCase();
+        if (palavra.includes(letra)) {
+          let posFound = [];
+          for (let i = 0, len = palavra.length; i < len; i++) {
+            if (palavra[i] === letra) {
+              posFound.push(i);
+            }
+          }
+          for (let i = 0, len = posFound.length; i < len; i++) {
+            this.palavraSombra = this.palavraSombra.replaceAt(posFound[i], letra);
+          }
+          console.log('qtdAcertos:', this.qtdLetrasAcertadas, ', posFoundength:', posFound.length);
+          this.qtdLetrasAcertadas += posFound.length;
+          console.log('sombra:', this.palavraSombra);
+          this.atualizarSombraPalavra();
+          this.computarAcerto();
         }
         else {
             this.computarErro();
@@ -101,10 +119,10 @@
         if (acertoPorPalpite)
             this.acertos += 2;
         else
-            this.acertos++;
-        //verificar se palavra está completa
-        //se palavra completa, iniciar outra rodada
-        this.carregarPalavraEIniciarPartida();
+          this.acertos++;
+        if(this.qtdLetrasAcertadas == this.palavraAtual.length){
+          this.carregarPalavraEIniciarPartida();
+        }
     }
 
     computarErro() {

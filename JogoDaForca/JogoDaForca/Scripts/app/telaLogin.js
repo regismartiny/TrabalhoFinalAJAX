@@ -31,7 +31,7 @@ class TelaLogin {
         self.$btnSubmit.attr('disabled', true);
         setTimeout(function () {
           jogoDaForca.renderizarTela('inicial', self.usuario);
-        }, 2000);
+        }, 1000);
       }
     });
   }
