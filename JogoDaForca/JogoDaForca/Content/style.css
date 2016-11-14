@@ -40,7 +40,7 @@ div{
   text-align: center;
 }
 
-.chute{
+#chute{
     visibility:hidden;
     margin-left:300px;
     width:500px;
