@@ -1,5 +1,5 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnChute, $elemDivChute, $elemPalavraChute, $elemLetras, $elemPalavra) {
+  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnChute, $elemDivChute, $elemPalavraChute, $elemLetras, $elemPalavra, callbackFim) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.$elemTimerDisplay = $elemTimerDisplay;
@@ -11,6 +11,7 @@
         this.$elemLetras = $elemLetras;
         this.$elemPalavra = $elemPalavra;
         this.palavrasJaUsadas = palavrasJaUsadas;
+        this.callbackFim = callbackFim;
         this.timer;
         this.limiteErros;
         this.erros = 0;
@@ -48,34 +49,34 @@
         let self = this;
         this.getPalavra().then(palavra => {
             console.log('palavra:', palavra);
+            this.qtdLetrasAcertadas = 0;
             self.palavraAtual = palavra;
             self.palavrasJaUsadas.push(palavra);
             self.criarSombraPalavra.bind(self)();
+            self.atualizarTelaSombraPalavra.bind(self)();
             self.iniciarPartida.bind(self)();
         });
     }
 
     criarSombraPalavra() {
-      for (let i = 0; i < this.palavraAtual.length; i++) {
-        if (this.palavraAtual[i] === '-')
-          this.palavraSombra += '-';
-        else
+        this.palavraSombra = '';
+        for (let i = 0; i < this.palavraAtual.length; i++) {
+            if (this.palavraAtual[i] === '-')
+                this.palavraSombra += '-';
+            else
           this.palavraSombra += '_';
-      }
-      this.$elemPalavra.text(this.palavraSombra);
-      console.log('sombra-palavra:', this.palavraSombra);
+        }
     }
 
-    atualizarSombraPalavra() {
-      this.$elemPalavra.text(this.palavraSombra);
-      console.log('sombra-palavra:', this.palavraSombra);
+    atualizarTelaSombraPalavra() {
+        this.$elemPalavra.text(this.palavraSombra);
+        console.log('sombra-palavra:', this.palavraSombra);
     }
 
     iniciarPartida() {
         switch (this.dificuldade.toUpperCase()) {
           case 'NORMAL':
             this.limiteErros = 5;
-            console.log(this.$elemTimerDisplay);
             this.$elemTimerDisplay.hide();
             break;
           case 'BH':
@@ -104,10 +105,10 @@
           for (let i = 0, len = posFound.length; i < len; i++) {
             this.palavraSombra = this.palavraSombra.replaceAt(posFound[i], letra);
           }
-          console.log('qtdAcertos:', this.qtdLetrasAcertadas, ', posFoundength:', posFound.length);
+          console.log('qtdAcertos:', this.qtdLetrasAcertadas, ', posFoundLength:', posFound.length);
           this.qtdLetrasAcertadas += posFound.length;
           console.log('sombra:', this.palavraSombra);
-          this.atualizarSombraPalavra();
+          this.atualizarTelaSombraPalavra();
           this.computarAcerto();
         }
         else {
@@ -116,11 +117,12 @@
     }
 
     computarAcerto(acertoPorPalpite) {
+        console.log('acertou');
         if (acertoPorPalpite)
             this.acertos += 2;
         else
           this.acertos++;
-        if(this.qtdLetrasAcertadas == this.palavraAtual.length){
+        if (acertoPorPalpite || this.qtdLetrasAcertadas == this.palavraAtual.length) {
           this.carregarPalavraEIniciarPartida();
         }
     }
@@ -133,21 +135,23 @@
     }
 
     chute($event) {
-      console.log('event:', $event);
       let keyCode = $event.originalEvent.keyCode;
       let palavraChute = $event.target.value;
-      console.log('key:', keyCode);
-      if (keyCode === 13) {//ENTER
-        if (palavraChute.toUpperCase() === this.palavraAtual.toUpperCase()) {
-          this.computarAcerto(true);
-        }
-        else {
-          this.perdeu();
-        }
-      } else if (keyCode === 27) {//ESC
-        this.$elemDivChute.hide();
-        this.$btnChute.show();
-        //$event.target.style.display = "none";
+      if (keyCode === 13 || keyCode === 27) {
+          $event.target.value = "";
+          this.$elemDivChute.hide();
+          this.$btnChute.show();
+          //$event.target.style.display = "none";
+          if (keyCode === 13) {//ENTER
+              if (palavraChute.toUpperCase() === this.palavraAtual.toUpperCase()) {
+                  this.computarAcerto(true);
+              }
+              else {
+                  this.perdeu();
+              }
+          } else if (keyCode === 27) {//ESC
+              
+          }
       }
     }
 
@@ -157,6 +161,8 @@
 
     perdeu() {
         this.fimDoJogo();
+        //exibir tela game over
+        console.log('Game over!');
     }
 
     reset() {
@@ -168,6 +174,7 @@
             this.timer.stop();
 
         this.enviarPontuacaoJogadorParaServidor();
+        this.callbackFim();
     }
 
     enviarPontuacaoJogadorParaServidor() {

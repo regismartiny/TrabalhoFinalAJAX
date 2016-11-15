@@ -16,7 +16,7 @@ namespace JogoDaForca.Controllers
 {
     public class JogoController : Controller
     {
-        private PalavraServico servicoPalavras = ServicoDeDependencias.MontarPalavraRepositorioMock();
+        private PalavraServico servicoPalavras = ServicoDeDependencias.MontarPalavraRepositorio();
         private JogadorServico servicoJogador = ServicoDeDependencias.MontarJogadorRepositorio();
         private PontuacaoServico servicoPontuacao = ServicoDeDependencias.MontarPontuacaoRepositorio();
 
