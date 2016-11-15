@@ -1,12 +1,20 @@
 
 /* tela de login */
-.bodyLogin { 
+.bodyGameOver { 
   background-image:url(http://www.freakpop.com.br/wp-content/uploads/2015/07/a-forca-warner-critica-freakpop-01.jpg);
   background-size:100% 100%;
 -webkit-background-size: 100% 100%;
 -o-background-size: 100% 100%;
 -khtml-background-size: 100% 100%;
 -moz-background-size: 100% 100%;
+}
+
+.gameOver{
+    font-size:50px;
+    color:white;
+    position:relative;
+    left:500px;
+    top:200px;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);

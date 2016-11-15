@@ -64,7 +64,8 @@
             if (this.palavraAtual[i] === '-')
                 this.palavraSombra += '-';
             else
-          this.palavraSombra += '_';
+              // mexi aki
+                this.palavraSombra += '_'+' ';
         }
     }
 
@@ -160,7 +161,7 @@
     }
 
     perdeu() {
-        this.fimDoJogo();
+      this.fimDoJogo();
         //exibir tela game over
         console.log('Game over!');
     }
