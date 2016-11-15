@@ -288,8 +288,11 @@
     <Content Include="Scripts\app\marvelflix\telaLogin.js" />
     <Content Include="Scripts\app\marvelflix\telaPrincipal.js" />
     <Content Include="Scripts\app\marvelflix\_start.js" />
+    <Content Include="Scripts\app\telaGameOver.js" />
+    <Content Include="Scripts\app\telaJogo.js" />
+    <Content Include="Scripts\app\telaLeaderboard.js" />
     <Content Include="Scripts\app\telaLogin.js" />
-    <Content Include="Scripts\app\telaPrincipal.js" />
+    <Content Include="Scripts\app\telaInicial.js" />
     <Content Include="Scripts\app\timer.js" />
     <Content Include="Scripts\app\_start.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -331,6 +334,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Static\Templates\tela-gameover.tpl.html" />
     <Content Include="Static\Templates\tela-inicial.tpl.html" />
     <Content Include="Static\Templates\tela-jogo.tpl.html" />
     <Content Include="Views\Home\TelaLogin.html" />

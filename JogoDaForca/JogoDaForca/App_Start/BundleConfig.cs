@@ -29,7 +29,10 @@ namespace JogoDaForca
                "~/Scripts/app/timer.js",
                "~/Scripts/app/jogo.js",
                "~/Scripts/app/jogoDaForca.js",
-               "~/Scripts/app/telaPrincipal.js",
+               "~/Scripts/app/telaGameOver.js",
+               "~/Scripts/app/telaJogo.js",
+               "~/Scripts/app/telaLeaderBoard.js",
+               "~/Scripts/app/telaInicial.js",
                "~/Scripts/app/telaLogin.js",
                "~/Scripts/app/_start.js"));
 

@@ -64,8 +64,7 @@
             if (this.palavraAtual[i] === '-')
                 this.palavraSombra += '-';
             else
-              // mexi aki
-                this.palavraSombra += '_'+' ';
+                this.palavraSombra += '_';
         }
     }
 
@@ -86,17 +85,19 @@
           break;
         }
         this.$elemTentativasRestantes.text(this.limiteErros);
+        let letras = $('.letra');
+        letras.each(function () {
+            this.style.visibility = 'visible';
+        });
     }
 
 
     entrada($event) {
-        console.log('event:', $event);
         let letra = $event.target.outerText.toUpperCase();
         console.log('entrada:', letra);
-        if (this.timer !== undefined)
-          this.timer.reset();
         let palavra = this.palavraAtual.toUpperCase();
         if (palavra.includes(letra)) {
+            $event.target.style.visibility = 'hidden';
           let posFound = [];
           for (let i = 0, len = palavra.length; i < len; i++) {
             if (palavra[i] === letra) {
@@ -104,8 +105,10 @@
             }
           }
           for (let i = 0, len = posFound.length; i < len; i++) {
+              console.log('sombra:', this.palavraSombra);
             this.palavraSombra = this.palavraSombra.replaceAt(posFound[i], letra);
           }
+          console.log('posFound:', posFound);
           console.log('qtdAcertos:', this.qtdLetrasAcertadas, ', posFoundLength:', posFound.length);
           this.qtdLetrasAcertadas += posFound.length;
           console.log('sombra:', this.palavraSombra);
@@ -124,11 +127,14 @@
         else
           this.acertos++;
         if (acertoPorPalpite || this.qtdLetrasAcertadas == this.palavraAtual.length) {
-          this.carregarPalavraEIniciarPartida();
+            if (this.timer !== undefined)
+                this.timer.reset();
+            setTimeout(this.carregarPalavraEIniciarPartida.bind(this), 2000);
         }
     }
 
     computarErro() {
+        console.log('errou');
         this.erros++;
         this.$elemTentativasRestantes.text(this.limiteErros - this.erros);
         if (this.erros === this.limiteErros)
@@ -138,6 +144,7 @@
     chute($event) {
       let keyCode = $event.originalEvent.keyCode;
       let palavraChute = $event.target.value;
+      console.log('chute:', palavraChute);
       if (keyCode === 13 || keyCode === 27) {
           $event.target.value = "";
           this.$elemDivChute.hide();
@@ -162,8 +169,7 @@
 
     perdeu() {
       this.fimDoJogo();
-        //exibir tela game over
-        console.log('Game over!');
+      console.log('Game over!');
     }
 
     reset() {
@@ -180,7 +186,13 @@
 
     enviarPontuacaoJogadorParaServidor() {
         let pontuacao = { score: this.acertos, dificuldade: this.dificuldade, jogadorNome: this.nomeJogador };
-        $.post('/jogo/postPontuacao', pontuacao);
+        $.post('/jogo/postPontuacao', pontuacao)
+            .catch((err) => {
+                console.error('Erro na comunicação com o Servidor!');
+                console.error(`${err.responseJSON.code} - ${err.responseJSON.message}`);
+                reject(err);
+            }
+        );
     }
 
 }

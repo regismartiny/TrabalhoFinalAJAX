@@ -49,9 +49,15 @@ div{
 }
 
 #div-chute{
-    display:none;
-    margin-left:450px;
-    width:500px;
+    display: none;
+    margin: 0 auto;
+    width: 400px;
+}
+
+#palavra-chute{
+    text-align: center;
+    font-size: 14px;
+    width:350px;
 }
 
 .styled-select select {
@@ -137,12 +143,14 @@ div{
   font-size: 50px;
   text-align:center;
   color: #fff;
+  letter-spacing: 30px;
 }
 
 .informacoes{
   text-align:center;
   color:#fff;
   font-size:20px;
+  margin: 0 auto;
 }
 
 .informacoes2{
@@ -234,13 +242,15 @@ th {
   background: -webkit-linear-gradient(left, rgba(85, 237, 79, 1) 40px, rgba(85, 237, 79, 1) 0);
 }
 
-#btn-proxima-pagina{
+#btn-pagina-anterior{
   left: 350px;
 }
 
-#btn-pagina-anterior{
+#btn-pagina-seguinte{
   right: 415px;
 }
+
+
 
 
 /*

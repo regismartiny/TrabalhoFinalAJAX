@@ -4,7 +4,18 @@ jogoDaForca.toggleLoader = () => {
     ['.loader', '.tela'].forEach(seletor => $(seletor).toggle());
 };
 
-jogoDaForca.renderizarTela = function (nome, usuario) {
+var registrarBindsEventos = function() {
+    console.log('binds');
+    this.$btnHome = $('#btn-home');
+    this.$btnHome.on('click', () => { jogoDaForca.renderizarTela('inicial') });
+    this.$btnLeaderBoard = $('#btn-leaderboard');
+    this.$btnLeaderBoard.on('click', () => { jogoDaForca.renderizarTela('leaderboard') });
+    this.$btnLogout = $('#btn-logout');
+    this.$btnLogout.on('click', location.reload);
+        
+}()
+
+jogoDaForca.renderizarTela = function (nome, usuario, dificuldadeAtual) {
 
   // escondendo todas as telas antes de renderizar a tela correta
   let $subTelas = $('.sub-tela');
@@ -12,14 +23,25 @@ jogoDaForca.renderizarTela = function (nome, usuario) {
   let seletor = '';
 
   switch (nome) {
-    case 'inicial':
-      new TelaPrincipal('#telaPrincipal', usuario);
-      break;
     case 'login':
-      new TelaLogin('#telaLogin');
-      break;
+        new TelaLogin('#telaLogin');
+        return;
+        break;
+    case 'inicial':
+        new TelaInicial('#telaPrincipal', usuario);
+        break;
+    case 'jogo':
+        new TelaJogo('#telaPrincipal', usuario, dificuldadeAtual);
+        break;
+    case 'gameover':
+        new TelaGameOver('#telaPrincipal');
+        break;
+    case 'leaderboard':
+        new TelaLeaderBoard('#telaPrincipal');
+        break;
   }
-
+  $('#cabecalho').show();
+  $('#nome-jogador').text(usuario);
 }
 
 jogoDaForca.loadTemplate = function (name) {

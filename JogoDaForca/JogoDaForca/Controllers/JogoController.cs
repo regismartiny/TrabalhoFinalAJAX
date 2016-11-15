@@ -59,15 +59,11 @@ namespace JogoDaForca.Controllers
         }
         
 
-        public IEnumerable<Pontuacao> GetPontuacao(Jogador jogador = null)
+        public IEnumerable<Pontuacao> GetPontuacao()
         {
             try
             {
-                if (jogador == null)
-                {
-                    return servicoPontuacao.BuscarPontuacaoTopDez();
-                }
-                else return servicoPontuacao.BuscarPontuacaoJogador(jogador);
+                return servicoPontuacao.BuscarPontuacaoTopDez();
             }
             catch (BancoException ex)
             {
