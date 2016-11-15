@@ -316,3 +316,108 @@ th {
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
+
+.hangman-todo{
+ position: absolute;
+ left: 20%;
+ top: 175px;
+}
+
+.hangman{
+ position:absolute;
+ border: white solid;
+ border-right: transparent;
+ border-bottom: transparent;
+ height: 150px;
+ width: 100px;
+}
+.hangman::before{
+ content: "";
+ position:absolute;
+ border-bottom: white solid;
+ height:0;
+ width: 150px;
+ top:100%;
+ right: 26px;
+}
+.hangman::after{
+ content: "";
+ position:absolute;
+ border-right: white solid;
+ height:10px;
+ width: 0;
+ left: 96.5%;
+}
+.corpo{
+ position:absolute;
+ height: 125px;
+ width: 65px;
+ left: 68px;
+ top: 10px;
+}
+
+.boneco-cabeca{
+ position:absolute;
+ height: 25%;
+ width: 50%;
+ border-radius: 50%;
+ left: 13px;
+ border: white solid;
+}
+
+.boneco-corpo{
+ position:absolute;
+ top: 30px;
+ height: 40%;
+ width: 0;
+ left: 28px;
+ border-right: white solid;
+}
+
+.boneco-braco-direito{
+ position:absolute;
+ top: 32px;
+ height: 30%;
+ width: 0;
+ left: 38px;
+ border-right: white solid;
+     -ms-transform: rotate(-30deg);
+   -webkit-transform: rotate(-30deg);
+   transform: rotate(-30deg);
+}
+
+.boneco-braco-esquerdo{
+ position:absolute;
+ top: 32px;
+ height: 30%;
+ width: 0;
+ left: 18px;
+ border-right: white solid;
+     -ms-transform: rotate(30deg);
+   -webkit-transform: rotate(30deg);
+   transform: rotate(30deg);
+}
+
+.boneco-perna-direito{
+ position:absolute;
+ top: 78px;
+ height: 30%;
+ width: 0;
+ left: 35px;
+ border-right: white solid;
+     -ms-transform: rotate(-20deg);
+   -webkit-transform: rotate(-20deg);
+   transform: rotate(-20deg);
+}
+
+.boneco-perna-esquerdo{
+ position:absolute;
+ top: 78px;
+ height: 30%;
+ width: 0;
+ left: 21px;
+ border-right: white solid;
+     -ms-transform: rotate(20deg);
+   -webkit-transform: rotate(20deg);
+   transform: rotate(20deg);
+}
