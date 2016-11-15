@@ -3,11 +3,10 @@
 
 <div class="table">
 <table>
-<thead><tr><th>posicão</th><th>Jogador</th><th>Score</th></tr></thead>
-       <tr><td><span id="posicao">1</span></td><td><span id="jogador">Rodrigo</span></td><td><span id="pontuacao">1250</span></td></tr>
-       <tr><td><span id="posicao">2</span></td><td><span id="jogador">Regis</span></td><td><span id="pontuacao">1100</span></td></tr>
-       <tr><td><span id="posicao">3</span></td><td><span id="ogador">Rafael</span></td><td><span id="pontuacao">980</span></td></tr>
-       <tr><td><span id="posicao">4</span></td><td><span id="jogador">Otavio</span></td><td><span id="pontuacao">970</span></td></tr>
+<thead><tr><th>Jogador</th><th>Score</th><th>Dificuldade</th></tr></thead>
+       {{#each pontuacao}}
+        <tr><td>{{Jogador}}</td><td>{{Score}}</td><td>{{Dificuldade}}</td></tr>
+       {{/each}}
 </table>
 </div>
 
