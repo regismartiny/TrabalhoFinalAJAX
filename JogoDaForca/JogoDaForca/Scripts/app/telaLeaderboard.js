@@ -1,17 +1,17 @@
 ﻿class TelaLeaderBoard {
     constructor(seletor) {
         this.$elem = $(seletor);
+        this.paginaAtual = 1;
+        this.totalPaginas;
 
-        this.renderizarEstadoInicial();
+        this.carregarPontuacoesEMontarNaTela();
     }
 
-    renderizarEstadoInicial() {
+    renderizarEstadoInicial(listaPontuacoes) {
         let self = this;
-        jogoDaForca.render('.tela', 'tela-leaderboard',
-          { dados: { jogador: this.jogadorAtual } }).then(() => {
+        jogoDaForca.render('.tela', 'tela-leaderboard', listaPontuacoes).then(() => {
               console.log('tela-leaderboard');
               self.registrarBindsEventos(self);
-              self.carregarPontuacoesEMontarNaTela.bind(self)();
           });
     }
 
@@ -24,7 +24,7 @@
 
     getPontuacoes() {
         return new Promise((resolve, reject) => {
-            $.get('/jogo/getPontuacao')
+            $.get(`/jogo/getPontuacao?pagina=${this.paginaAtual}`)
                 .done(
                     (pontuacao) => {
                         resolve(pontuacao);
@@ -39,16 +39,31 @@
 
     carregarPontuacoesEMontarNaTela() {
         let pontuacoes = this.getPontuacoes().then((pontuacoes) => {
+            let listaPontuacoes = pontuacoes[0];
+            let totalRegistros = pontuacoes[1];
+            this.totalPaginas = Math.ceil(this.totalRegistros/10.0);
             console.log(pontuacoes);
+            this.renderizarEstadoInicial.call(this, listaPontuacoes);
         });
         
     }
 
     paginaAnterior() {
         console.log('pagina anterior');
+        if (this.paginaAtual > 1) {
+            this.paginaAtual--;
+        } else {
+            this.$btnPaginaAnterior.hide();
+        }
     }
 
     paginaSeguinte() {
         console.log('pagina seguinte');
+        if (this.paginaAtual < this.totalPaginas) {
+            this.paginaAtual++;
+            this.$btnPaginaAnterior.show();
+        } else {
+            this.$btnPaginaSeguinte.hide();
+        }
     }
 }
