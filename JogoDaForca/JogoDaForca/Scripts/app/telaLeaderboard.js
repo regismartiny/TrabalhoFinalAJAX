@@ -52,8 +52,12 @@
         console.log('pagina anterior');
         if (this.paginaAtual > 1) {
             this.paginaAtual--;
+            this.carregarPontuacoesEMontarNaTela();
         } else {
             this.$btnPaginaAnterior.hide();
+        }
+        if (this.paginaAtual === this.totalPaginas) {
+            this.$btnPaginaSeguinte.hide();
         }
     }
 
@@ -62,8 +66,12 @@
         if (this.paginaAtual < this.totalPaginas) {
             this.paginaAtual++;
             this.$btnPaginaAnterior.show();
+            this.carregarPontuacoesEMontarNaTela();
         } else {
             this.$btnPaginaSeguinte.hide();
+        }
+        if (this.paginaAtual === 1) {
+            this.$btnPaginaAnterior.hide();
         }
     }
 }

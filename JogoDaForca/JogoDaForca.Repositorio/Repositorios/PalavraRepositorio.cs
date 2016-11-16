@@ -14,8 +14,10 @@ namespace JogoDaForca.Repositorio
         {
             using(var context = new ContextoDeDados())
             {
-                var palavraAchada = context.Palavra.Where(palavra => palavra.Dificuldade == dificuldade && (palavrasJaUsadas.Count() == 0 || !(palavrasJaUsadas.Any(filtro => filtro.Equals(palavra.Nome))))).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
-                return palavraAchada;
+                var palavraAchada = context.Palavra.Where(palavra => palavra.Dificuldade.ToUpperInvariant().Equals(dificuldade.ToUpperInvariant()));
+                if (palavrasJaUsadas != null && palavrasJaUsadas.Count > 0)
+                    palavraAchada = palavraAchada.Where(palavra => !(palavrasJaUsadas.Any(filtro => filtro.ToUpperInvariant().Equals(palavra.Nome.ToUpperInvariant()))));
+                return palavraAchada.OrderBy(c => Guid.NewGuid()).FirstOrDefault();
             }            
         }
     }

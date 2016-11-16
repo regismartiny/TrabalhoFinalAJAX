@@ -26,10 +26,10 @@ namespace RepositorioMock
 
         public Palavra BuscarPalavra(IList<string> palavrasJaUsadas, string dificuldade)
         {
-            var listaFiltrada = listaDePalavras.Where(p => palavrasJaUsadas.Any(filtro => !filtro.Equals(p.Nome)));
-            Palavra palavra = listaFiltrada.Where(p => p.Dificuldade.ToLower().Equals(dificuldade.ToLower())).OrderBy(c => Guid.NewGuid()).FirstOrDefault();
-            //palavrasJaUsadas.Add(palavra.Nome);
-            return palavra;
+            var palavraAchada = listaDePalavras.Where(palavra => palavra.Dificuldade.ToUpperInvariant().Equals(dificuldade.ToUpperInvariant()));
+            if (palavrasJaUsadas != null && palavrasJaUsadas.Count > 0)
+                palavraAchada = palavraAchada.Where(palavra => !(palavrasJaUsadas.Any(filtro => filtro.ToUpperInvariant().Equals(palavra.Nome.ToUpperInvariant()))));
+            return palavraAchada.OrderBy(c => Guid.NewGuid()).FirstOrDefault();
         }
 
         public Palavra BuscarPalavra(IList<Palavra> palavrasJaUsadas, string dificuldade)

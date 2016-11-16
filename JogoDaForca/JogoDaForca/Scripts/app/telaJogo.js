@@ -12,7 +12,10 @@
     }
 
     inicializarArmazenamentoDePalavrasUsadas() {
-        localStorage.setItem('palavrasJaUsadas', this.palavrasJaUsadas);
+        if (localStorage.getItem('palavrasJaUsadas') != undefined)
+            this.palavrasJaUsadas.concat(localStorage.palavrasJaUsadas);
+        else
+            localStorage.setItem('palavrasJaUsadas', this.palavrasJaUsadas);
     }
 
     renderizarEstadoInicial() {

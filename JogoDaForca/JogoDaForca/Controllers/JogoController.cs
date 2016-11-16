@@ -16,17 +16,19 @@ namespace JogoDaForca.Controllers
 {
     public class JogoController : Controller
     {
-        private PalavraServico servicoPalavras = ServicoDeDependencias.MontarPalavraRepositorio();
+        private PalavraServico servicoPalavras = ServicoDeDependencias.MontarPalavraRepositorioMock();
         private JogadorServico servicoJogador = ServicoDeDependencias.MontarJogadorRepositorio();
         private PontuacaoServico servicoPontuacao = ServicoDeDependencias.MontarPontuacaoRepositorio();
 
 
         // GET: Palavra
         [ResponseType(typeof(string))]
-        public String GetPalavra(List<String> palavrasJaUsadas, string dificuldade)
+        public string GetPalavra(List<string> palavrasJaUsadas, string dificuldade)
         {
             try
             {
+                if (palavrasJaUsadas.ElementAt(0).Equals("undefined"))
+                    palavrasJaUsadas = null;
                 return servicoPalavras.BuscarPalavraPorDificuldade(dificuldade, palavrasJaUsadas).Nome;
             }
             catch(BancoException ex)
@@ -58,16 +60,17 @@ namespace JogoDaForca.Controllers
             return null;
         }
 
-        public IEnumerable<object> GetPontuacao(int pagina)
+        [ResponseType(typeof(List<object>))]
+        public List<object> GetPontuacao(int pagina)
         {
-            var listaASerRetornada = new List<Object>();
+            var listaRetorno = new List<object>();
             try
             {
                 var listaDePontuacao = servicoPontuacao.BuscarPontuacaoTopDez(pagina);
                 var quantidadeRegistros = servicoPontuacao.QuantidadePontuacao();
-                listaASerRetornada.Add(listaDePontuacao);
-                listaASerRetornada.Add(quantidadeRegistros);
-                return listaASerRetornada;
+                listaRetorno.Add(listaDePontuacao);
+                listaRetorno.Add(quantidadeRegistros);
+                return listaRetorno;
             }
             catch (BancoException ex)
             {
@@ -112,7 +115,7 @@ namespace JogoDaForca.Controllers
                 error.Add("ErrorMessage", "Ocorreu algum error inesperado, tente denovo mais tarde");
                 return Json(error);
             }
-            
+
         }
     }
 }
