@@ -59,11 +59,17 @@ namespace JogoDaForca.Controllers
         }
         
 
-        public IEnumerable<Pontuacao> GetPontuacao()
+        public Object GetPontuacao(int pagina)
         {
+            var objetoASerRetornado = new Object();
             try
             {
-                return servicoPontuacao.BuscarPontuacaoTopDez();
+                var listaDePontuacao = servicoPontuacao.BuscarPontuacaoTopDez(pagina);
+                var quantidadeRegistros = servicoPontuacao.QuantidadePontuacao();
+                objetoASerRetornado = quantidadeRegistros;
+                objetoASerRetornado = listaDePontuacao;
+
+                return objetoASerRetornado;
             }
             catch (BancoException ex)
             {

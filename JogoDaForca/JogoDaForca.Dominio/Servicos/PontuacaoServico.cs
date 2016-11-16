@@ -24,18 +24,16 @@ namespace JogoDaForca.Dominio.Servicos
             this.repositorio.SalvarPontuacao(pontuacao);
         }
 
-        public List<Pontuacao> BuscarPontuacaoTopDez()
+        public List<Pontuacao> BuscarPontuacaoTopDez(int pagina)
         {
-            var listaDePontuacao = this.repositorio.BuscarPontuacao(null);
+            var listaDePontuacao = this.repositorio.BuscarPontuacao(pagina);
             if (listaDePontuacao.Count() == 0) throw new BancoException("Não tem nenhum registro");
             return listaDePontuacao;
         }
 
-        public List<Pontuacao> BuscarPontuacaoJogador(Jogador jogador)
+        public int QuantidadePontuacao()
         {
-            var listaDePontuacao = this.repositorio.BuscarPontuacao(jogador);
-            if (listaDePontuacao.Count() == 0) throw new BancoException("O jogador não possui nenhum registro");
-            return listaDePontuacao;
+            return this.repositorio.BuscarQuantidade();
         }
     }
 }
