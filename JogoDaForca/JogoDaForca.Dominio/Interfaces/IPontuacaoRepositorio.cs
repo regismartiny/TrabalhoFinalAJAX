@@ -11,8 +11,7 @@ namespace JogoDaForca.Dominio.Interfaces
     {
         void SalvarPontuacao(Pontuacao pontuacao);
 
-        List<Pontuacao> BuscarPontuacao(Jogador jogador);
-
-
+        List<Pontuacao> BuscarPontuacao(int pagina);
+        int BuscarQuantidade();
     }
 }

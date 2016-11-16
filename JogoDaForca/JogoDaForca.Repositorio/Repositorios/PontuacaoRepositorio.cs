@@ -11,11 +11,19 @@ namespace JogoDaForca.Repositorio.Repositorios
 {
     public class PontuacaoRepositorio : IPontuacaoRepositorio
     {
-        public List<Pontuacao> BuscarPontuacao(Jogador jogador)
+        public List<Pontuacao> BuscarPontuacao(int pagina)
         {
             using (var contexto = new ContextoDeDados())
             {
-                return contexto.Pontuacao.Where(p => jogador == null || p.Jogador.Id == jogador.Id).Take(10).OrderBy(a => a.Score).ToList();
+                return contexto.Pontuacao.Skip((pagina - 1) * 10).Take(10).OrderBy(a => a.Score).ToList();
+            }
+        }
+
+        public int BuscarQuantidade()
+        {
+            using (var contexto = new ContextoDeDados())
+            {
+                return contexto.Pontuacao.Count();
             }
         }
 
