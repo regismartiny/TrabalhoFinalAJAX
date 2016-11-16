@@ -357,6 +357,7 @@ th {
 }
 
 .boneco-cabeca{
+ display: none;
  position:absolute;
  height: 25%;
  width: 50%;
@@ -366,6 +367,7 @@ th {
 }
 
 .boneco-corpo{
+ display: none;
  position:absolute;
  top: 30px;
  height: 40%;
@@ -375,6 +377,7 @@ th {
 }
 
 .boneco-braco-direito{
+ display: none;
  position:absolute;
  top: 32px;
  height: 30%;
@@ -387,6 +390,7 @@ th {
 }
 
 .boneco-braco-esquerdo{
+ display: none;
  position:absolute;
  top: 32px;
  height: 30%;
@@ -399,6 +403,7 @@ th {
 }
 
 .boneco-perna-direito{
+ display: none;
  position:absolute;
  top: 78px;
  height: 30%;
@@ -411,6 +416,7 @@ th {
 }
 
 .boneco-perna-esquerdo{
+ display: none;
  position:absolute;
  top: 78px;
  height: 30%;

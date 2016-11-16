@@ -27,11 +27,15 @@ jogoDaForca.renderizarTela = function (nome, usuario, dificuldadeAtual) {
         new TelaLogin('#telaLogin');
         return;
         break;
-    case 'inicial':
-        new TelaInicial('#telaPrincipal', usuario);
-        break;
+      case 'inicial': {
+          if (usuario) {
+              jogoDaForca.usuario = usuario;
+          }
+          new TelaInicial('#telaPrincipal', jogoDaForca.usuario);
+          break;
+      }
     case 'jogo':
-        new TelaJogo('#telaPrincipal', usuario, dificuldadeAtual);
+        new TelaJogo('#telaPrincipal', jogoDaForca.usuario, dificuldadeAtual);
         break;
     case 'gameover':
         new TelaGameOver('#telaPrincipal');
@@ -41,7 +45,7 @@ jogoDaForca.renderizarTela = function (nome, usuario, dificuldadeAtual) {
         break;
   }
   $('#cabecalho').show();
-  $('#nome-jogador').text(usuario);
+  $('#nome-jogador').text(jogoDaForca.usuario);
 }
 
 jogoDaForca.loadTemplate = function (name) {

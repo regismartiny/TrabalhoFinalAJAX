@@ -36,11 +36,12 @@
         this.$btnChute.on('click', () => { this.$btnChute.hide(); this.$elemDivChute.show(); this.$elemPalavraChute.focus() });
         this.$elemLetras = $('.letra');
         this.$elemPalavra = $('#palavra');
+        this.$elemHangman = $('#hangman');
     }
 
     novoJogo() {
         console.log('jogador:', this.jogadorAtual);
-        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnChute, this.$elemDivChute, this.$elemPalavraChute, this.$elemLetras, this.$elemPalavra, this.fimDoJogo);
+        this.jogoAtual = new Jogo(this.jogadorAtual, this.dificuldadeAtual, this.palavrasJaUsadas, this.$elemTimerDisplay, this.$elemTentativasRestantes, this.$btnReset, this.$btnChute, this.$elemDivChute, this.$elemPalavraChute, this.$elemLetras, this.$elemPalavra, this.$elemHangman, this.fimDoJogo);
     }
 
     reset() {

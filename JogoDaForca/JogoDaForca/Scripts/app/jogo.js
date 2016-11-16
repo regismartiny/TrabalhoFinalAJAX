@@ -1,5 +1,5 @@
 ﻿class Jogo {
-  constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnChute, $elemDivChute, $elemPalavraChute, $elemLetras, $elemPalavra, callbackFim) {
+    constructor(nomeJogador, dificuldade, palavrasJaUsadas, $elemTimerDisplay, $elemTentativasRestantes, $btnReset, $btnChute, $elemDivChute, $elemPalavraChute, $elemLetras, $elemPalavra, $elemHangman, callbackFim) {
         this.nomeJogador = nomeJogador;
         this.dificuldade = dificuldade;
         this.$elemTimerDisplay = $elemTimerDisplay;
@@ -10,6 +10,7 @@
         this.$elemPalavraChute = $elemPalavraChute;
         this.$elemLetras = $elemLetras;
         this.$elemPalavra = $elemPalavra;
+        this.$elemHangman = $elemHangman;
         this.palavrasJaUsadas = palavrasJaUsadas;
         this.callbackFim = callbackFim;
         this.timer;
@@ -28,6 +29,15 @@
         this.$elemPalavraChute.keyup(this.chute.bind(this));
         this.$elemLetras.on('click', this.entrada.bind(this));
         this.$btnReset.on('click', this.reset.bind(this));
+        //hangman
+        this.$boneco = this.$elemHangman.children();
+        this.$partes = this.$boneco.children();
+        this.$cabeca = this.$partes.eq(0);
+        this.$tronco = this.$partes.eq(1);
+        this.$bracoDireito = this.$partes.eq(2);
+        this.$bracoEsquerdo = this.$partes.eq(3);
+        this.$pernaDireita = this.$partes.eq(4);
+        this.$pernaEsquerda = this.$partes.eq(5);
     }
 
     getPalavra() {
@@ -71,6 +81,38 @@
     atualizarTelaSombraPalavra() {
         this.$elemPalavra.text(this.palavraSombra);
         console.log('sombra-palavra:', this.palavraSombra);
+    }
+
+
+    atualizarHangman(tentativasRestantes) {
+        if (this.dificuldade === 'NORMAL') {
+            if (tentativasRestantes === 4) {
+                this.$cabeca.show();
+                this.$tronco.show();
+            }
+            else if (tentativasRestantes === 3) {
+                this.$bracoDireito.show();
+            }
+            else if (tentativasRestantes === 2) {
+                this.$bracoEsquerdo.show();
+            }
+            else if (tentativasRestantes === 1) {
+                this.$pernaDireita.show();
+            }
+            else if (tentativasRestantes === 0) {
+                this.$pernaEsquerda.show();
+            }
+        } else {
+            if (tentativasRestantes === 1) {
+                this.$tronco.show();
+                this.$cabeca.show();
+                this.$bracoDireito.show();
+            } else if (tentativasRestantes === 0){
+                this.$bracoEsquerdo.show();
+                this.$pernaDireita.show();
+                this.$pernaEsquerda.show();
+            }
+        }
     }
 
     iniciarPartida() {
@@ -136,9 +178,11 @@
     computarErro() {
         console.log('errou');
         this.erros++;
-        this.$elemTentativasRestantes.text(this.limiteErros - this.erros);
+        let tentativasRestantes = this.limiteErros - this.erros;
+        this.$elemTentativasRestantes.text(tentativasRestantes);
+        this.atualizarHangman(tentativasRestantes);
         if (this.erros === this.limiteErros)
-            this.perdeu();
+            setTimeout(this.perdeu.bind(this), 1000);
     }
 
     chute($event) {
